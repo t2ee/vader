@@ -1,0 +1,68 @@
+{
+  "name": "@t2ee/vader",
+  "version": "0.0.1",
+  "description": "t2ee core component, router framework used on top of koa",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "test": "rm -rf test-dist;tsc -p tsconfig.test.json;mocha test-dist/test/*.js --require source-map-support/register",
+    "coverage": "rm -rf test-dist;tsc -p tsconfig.test.json;istanbul cover _mocha test-dist/test/*.js",
+    "typescript": "tsc -p tsconfig.json",
+    "build-index": "node tools/generate-index",
+    "replace": "node tools/replace-definition-path",
+    "build": "npm run build-index && npm run typescript"
+  },
+  "dependencies": {
+    "@types/chai": "^3.4.29",
+    "@types/debug": "0.0.28",
+    "@types/koa": "^2.0.29",
+    "@types/lodash": "0.0.28",
+    "@types/mocha": "^2.2.28",
+    "@types/path-to-regexp": "^1.0.28",
+    "@types/supertest": "^1.1.27",
+    "app-module-path": "^1.1.0",
+    "co-body": "^4.2.0",
+    "debug": "^2.2.0",
+    "formidable": "^1.0.17",
+    "koa": "^2.0.0",
+    "lodash": "^4.13.1",
+    "path-to-regexp": "^1.5.3",
+    "reflect-metadata": "^0.1.3",
+    "source-map-support": "^0.4.2"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.4",
+    "mocha": "^2.5.3",
+    "source-map-support": "^0.4.2",
+    "supertest": "^1.2.0",
+    "typescript": "^2.1.0-dev.20160825"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "keywords": [
+    "koa",
+    "t2ee",
+    "rest",
+    "restful",
+    "ts",
+    "typescript",
+    "jersey",
+    "router",
+    "middleware"
+  ],
+  "author": "Qiaosen Huang",
+  "license": "MIT",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t2ee/vader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/t2ee/vader/issues"
+  },
+  "homepage": "https://github.com/t2ee/vader#readme"
+}
