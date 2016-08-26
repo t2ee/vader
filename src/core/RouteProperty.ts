@@ -1,7 +1,7 @@
-import MediaType from 'enums/MediaType';
-import HttpMethod from 'enums/HttpMethod';
-import VaderContext from 'core/VaderContext';
-import IParameter from 'core/IParameter';
+import MediaType from  '../enums/MediaType';
+import HttpMethod from  '../enums/HttpMethod';
+import VaderContext from  '../core/VaderContext';
+import IParameter from  '../core/IParameter';
 
 export default class RouteProperty {
     method: string;

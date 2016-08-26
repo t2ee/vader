@@ -2,17 +2,17 @@ import * as Koa from 'koa';
 import * as pathToRegexp from 'path-to-regexp';
 import * as  _ from 'lodash';
 const parse: any = require('co-body');
-import parseMulti from 'utils/parseMulti';
-import MediaType from 'enums/MediaType';
-import HttpMethod from 'enums/HttpMethod';
-import Symbol from 'enums/Symbol';
-import ControllerProperty from 'core/ControllerProperty';
-import RouteProperty from 'core/RouteProperty';
-import IParameter from 'core/IParameter';
-import ParamType from 'enums/ParamType';
-import IMiddleware from 'core/IMiddleware';
-import VaderContext from 'core/VaderContext';
-import Response from 'core/Response';
+import parseMulti from  '../utils/parseMulti';
+import MediaType from  '../enums/MediaType';
+import HttpMethod from  '../enums/HttpMethod';
+import Symbol from  '../enums/Symbol';
+import ControllerProperty from  '../core/ControllerProperty';
+import RouteProperty from  '../core/RouteProperty';
+import IParameter from  '../core/IParameter';
+import ParamType from  '../enums/ParamType';
+import IMiddleware from  '../core/IMiddleware';
+import VaderContext from  '../core/VaderContext';
+import Response from  '../core/Response';
 
 const Property = Symbol.Property;
 
@@ -72,8 +72,7 @@ class Router {
             return await new Promise<any>((resolve, reject) => {
                 parse.form(koaContext).then(resolve).catch(reject);
             });
-        } else if (route.consume === MediaType.TEXT &&
-            contentType.indexOf(MediaType.toString(MediaType.TEXT)) !== -1) {
+        } else if (route.consume === MediaType.TEXT) {
             return await new Promise<any>((resolve, reject) => {
                 parse.text(koaContext).then(resolve).catch(reject);
             });
@@ -92,7 +91,7 @@ class Router {
         return null;
     }
 
-    getIParameterValue(parameter: IParameter, context: VaderContext) {
+    getParameterValue(parameter: IParameter, context: VaderContext) {
         switch (parameter.paramType) {
             case ParamType.QueryParam:
                 if (parameter.paramKey) {
@@ -123,18 +122,17 @@ class Router {
         }
     }
 
-    getIParameter(parameter: IParameter, context: VaderContext) {
-        let ret = this.getIParameterValue(parameter, context);
+    getParameter(parameter: IParameter, context: VaderContext) {
+        let ret = this.getParameterValue(parameter, context);
         if (!ret) return null;
         if ([Object, String, Date, Number, Boolean].indexOf(parameter.type) !== -1)     {
             return ret;
-        } else {
-            return new parameter.type(ret);
         }
+        return ret;
     }
 
     routes() {
-        return async (koaContext: Koa.Context, next: Function):Promise<void> => {
+        return async (koaContext: Koa.Context, next: () => Promise<any>):Promise<void> => {
             const self = this;
             const {
                 matchedRoute,
@@ -171,12 +169,12 @@ class Router {
 
 
                     for (const parameter of matchedRoute.params) {
-                        parameters.push(self.getIParameter(parameter, context));
+                        parameters.push(self.getParameter(parameter, context));
                     }
 
                     for (const key in controllerClass.prototype[Property].params) {
                         controllerClass.prototype[key] =
-                            self.getIParameter(
+                            self.getParameter(
                                 controllerClass.prototype[Property].params[key],
                                 context);
                     }

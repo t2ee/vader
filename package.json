@@ -5,8 +5,11 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "test": "rm -rf test-dist;tsc -p tsconfig.test.json;mocha test-dist/test/*.js --require source-map-support/register",
-    "coverage": "rm -rf test-dist;tsc -p tsconfig.test.json;istanbul cover _mocha test-dist/test/*.js",
+    "test-typescript": "npm run build-index && rm -rf test-dist && tsc -p tsconfig.test.json",
+    "test": "npm run test-typescript && npm run mocha",
+    "mocha": "mocha test-dist/test/*.js --require source-map-support/register",
+    "coverage": "npm run test-typescript && npm run istanbul",
+    "istanbul": "istanbul cover _mocha test-dist/test/*.js",
     "typescript": "tsc -p tsconfig.json",
     "build-index": "node tools/generate-index",
     "replace": "node tools/replace-definition-path",
@@ -32,8 +35,8 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "istanbul": "^0.4.4",
-    "mocha": "^2.5.3",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.0.2",
     "source-map-support": "^0.4.2",
     "supertest": "^1.2.0",
     "typescript": "^2.1.0-dev.20160825"

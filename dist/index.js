@@ -21,6 +21,7 @@ const DELETE_1 = require('./decorators/DELETE');
 const GET_1 = require('./decorators/GET');
 const HEAD_1 = require('./decorators/HEAD');
 const HeaderParam_1 = require('./decorators/HeaderParam');
+const Inject_1 = require('./decorators/Inject');
 const Method_1 = require('./decorators/Method');
 const OPTIONS_1 = require('./decorators/OPTIONS');
 const POST_1 = require('./decorators/POST');
@@ -38,6 +39,7 @@ exports.decorators = {
     GET: GET_1.default,
     HEAD: HEAD_1.default,
     HeaderParam: HeaderParam_1.default,
+    Inject: Inject_1.default,
     Method: Method_1.default,
     OPTIONS: OPTIONS_1.default,
     POST: POST_1.default,

@@ -1,4 +1,4 @@
-import VaderContext from 'core/VaderContext';
+import VaderContext from  '../core/VaderContext';
 
 abstract class AbstractMiddleware {
     abstract before(context: VaderContext): Promise<void>;

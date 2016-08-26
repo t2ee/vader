@@ -16,44 +16,46 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments)).next());
     });
 };
-const tsRouter = require('../src');
+const vader = require('../src');
 const request = require('supertest');
 const Koa = require('koa');
-let TestController = class TestController extends tsRouter.Controller {
-    index() {
+const { PUT, Path, } = vader.decorators;
+const { Response, Router, } = vader.core;
+let TestPutController = class TestPutController {
+    basic() {
         return __awaiter(this, void 0, void 0, function* () {
-            return tsRouter.Response.status(200).body('hello').build();
+            return new Response()
+                .status(200)
+                .build();
         });
     }
 };
 __decorate([
-    tsRouter.Path(''),
-    tsRouter.PUT, 
+    PUT,
+    Path('/basic'), 
     __metadata('design:type', Function), 
     __metadata('design:paramtypes', []), 
     __metadata('design:returntype', Promise)
-], TestController.prototype, "index", null);
-TestController = __decorate([
-    tsRouter.Path('/test'), 
+], TestPutController.prototype, "basic", null);
+TestPutController = __decorate([
+    Path('/put'), 
     __metadata('design:paramtypes', [])
-], TestController);
+], TestPutController);
 const app = new Koa();
-const router = new tsRouter.Router();
-router.use(TestController);
+const router = new Router();
+router.use(TestPutController);
 app.use(router.routes());
 let server;
-describe('PUT plain text', () => {
+describe('PUT test', () => {
     before(() => {
         server = app.listen(3000);
     });
     after(() => {
         server.close();
     });
-    it('should respond plain text', function (done) {
+    it('should succeed', function (done) {
         request(server)
-            .put('/test')
-            .expect('Content-Type', 'text/plain')
-            .expect('hello')
+            .put('/put/basic')
             .expect(200, done);
     });
 });

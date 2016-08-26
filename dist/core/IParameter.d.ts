@@ -1,4 +1,4 @@
-import ParamType from  '../enums/ParamType';
+import ParamType from '../enums/ParamType';
 interface IParameter {
     type: any;
     paramType: ParamType;

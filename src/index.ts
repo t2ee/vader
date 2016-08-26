@@ -1,4 +1,6 @@
+import 'app-module-path/register'; 
 import * as Koa from 'koa';
+import IMiddleware from './core/IMiddleware';
 import core_AbstractMiddleware from './core/AbstractMiddleware'
 import core_ControllerProperty from './core/ControllerProperty'
 import core_Response from './core/Response'
@@ -20,6 +22,7 @@ import decorators_DELETE from './decorators/DELETE'
 import decorators_GET from './decorators/GET'
 import decorators_HEAD from './decorators/HEAD'
 import decorators_HeaderParam from './decorators/HeaderParam'
+import decorators_Inject from './decorators/Inject'
 import decorators_Method from './decorators/Method'
 import decorators_OPTIONS from './decorators/OPTIONS'
 import decorators_POST from './decorators/POST'
@@ -37,6 +40,7 @@ export const decorators = {
 	GET: decorators_GET,
 	HEAD: decorators_HEAD,
 	HeaderParam: decorators_HeaderParam,
+	Inject: decorators_Inject,
 	Method: decorators_Method,
 	OPTIONS: decorators_OPTIONS,
 	POST: decorators_POST,

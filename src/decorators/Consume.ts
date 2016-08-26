@@ -1,7 +1,7 @@
-import Symbol from 'enums/Symbol';
-import ControllerProperty from 'core/ControllerProperty';
-import RouteProperty from 'core/RouteProperty';
-import MediaType from 'enums/MediaType';
+import Symbol from  '../enums/Symbol';
+import ControllerProperty from  '../core/ControllerProperty';
+import RouteProperty from  '../core/RouteProperty';
+import MediaType from  '../enums/MediaType';
 import * as Debugger from 'debug';
 const debug = Debugger('decorator');
 

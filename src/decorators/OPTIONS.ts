@@ -1,5 +1,5 @@
-import HttpMethod from 'enums/HttpMethod';
-import Method from 'decorators/Method';
+import HttpMethod from  '../enums/HttpMethod';
+import Method from  '../decorators/Method';
 
 const OPTIONS = Method(HttpMethod.toString(HttpMethod.OPTIONS));
 

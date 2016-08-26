@@ -1,6 +1,7 @@
 /// <reference types="koa" />
 import 'app-module-path/register';
 import * as Koa from 'koa';
+import IMiddleware from './core/IMiddleware';
 import core_AbstractMiddleware from './core/AbstractMiddleware';
 import core_ControllerProperty from './core/ControllerProperty';
 import core_Response from './core/Response';
@@ -23,6 +24,7 @@ export declare const decorators: {
     GET: (target: any, key: string) => void;
     HEAD: (target: any, key: string) => void;
     HeaderParam: (paramKey?: string) => (target: any, key?: string, index?: number) => void;
+    Inject: (func: IMiddleware) => (target: any, key?: string) => void;
     Method: (method: string) => (target: any, key: string) => void;
     OPTIONS: (target: any, key: string) => void;
     POST: (target: any, key: string) => void;

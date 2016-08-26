@@ -9,6 +9,6 @@
 	},
 	"compileOnSave": false,
 	"include": [
-		"./test/wares.ts"
+		"./test/*.ts"
 	]
 }

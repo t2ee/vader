@@ -1,8 +1,7 @@
-import Symbol from 'enums/Symbol';
-import IContext from 'core/IContext';
-import ControllerProperty from 'core/ControllerProperty';
-import RouteProperty from 'core/RouteProperty';
-import IMiddleware from 'core/IMiddleware';
+import Symbol from  '../enums/Symbol';
+import ControllerProperty from  '../core/ControllerProperty';
+import RouteProperty from  '../core/RouteProperty';
+import IMiddleware from  '../core/IMiddleware';
 import * as Debugger from 'debug';
 const debug = Debugger('decorator');
 

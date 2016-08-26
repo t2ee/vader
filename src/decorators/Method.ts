@@ -1,6 +1,6 @@
-import Symbol from 'enums/Symbol';
-import ControllerProperty from 'core/ControllerProperty';
-import RouteProperty from 'core/RouteProperty';
+import Symbol from  '../enums/Symbol';
+import ControllerProperty from  '../core/ControllerProperty';
+import RouteProperty from  '../core/RouteProperty';
 import * as Debugger from 'debug';
 const debug = Debugger('decorator');
 
