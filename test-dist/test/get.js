@@ -72,6 +72,17 @@ let TestGetController = class TestGetController {
                 .build();
         });
     }
+    json() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return new Response()
+                .status(200)
+                .set('Content-Type', 'application/json')
+                .entity(JSON.stringify({
+                message: 'hello world',
+            }))
+                .build();
+        });
+    }
 };
 __decorate([
     QueryParam(), 
@@ -131,6 +142,13 @@ __decorate([
     __metadata('design:paramtypes', [Object, Object]), 
     __metadata('design:returntype', Promise)
 ], TestGetController.prototype, "header", null);
+__decorate([
+    GET,
+    Path('/json'), 
+    __metadata('design:type', Function), 
+    __metadata('design:paramtypes', []), 
+    __metadata('design:returntype', Promise)
+], TestGetController.prototype, "json", null);
 TestGetController = __decorate([
     Path('/get'), 
     __metadata('design:paramtypes', [])
@@ -170,6 +188,14 @@ describe('GET test', () => {
             .get('/get/header')
             .set('echo', 'hello world')
             .expect('hello world')
+            .expect(200, done);
+    });
+    it('should receive json', function (done) {
+        request(server)
+            .get('/get/json')
+            .expect({
+            message: 'hello world',
+        })
             .expect(200, done);
     });
 });

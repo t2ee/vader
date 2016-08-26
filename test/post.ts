@@ -26,10 +26,12 @@ class TestPostController {
     @Consume(MediaType.JSON)
     @Path('/json')
     async json(
-        @BodyParam() body
+        @BodyParam() body,
+        @BodyParam('message') message
     ) {
         chai.assert.equal(this.body.message, 'hello world');
         chai.assert.equal(body.message, 'hello world');
+        chai.assert.equal(message, 'hello world');
         return new Response()
             .status(200)
             .build();

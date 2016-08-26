@@ -27,10 +27,11 @@ const { POST, Path, BodyParam, Consume, Produce, } = vader.decorators;
 const { MediaType, } = vader.enums;
 const { Response, Router, } = vader.core;
 let TestPostController = class TestPostController {
-    json(body) {
+    json(body, message) {
         return __awaiter(this, void 0, void 0, function* () {
             chai.assert.equal(this.body.message, 'hello world');
             chai.assert.equal(body.message, 'hello world');
+            chai.assert.equal(message, 'hello world');
             return new Response()
                 .status(200)
                 .build();
@@ -74,9 +75,10 @@ __decorate([
     POST,
     Consume(MediaType.JSON),
     Path('/json'),
-    __param(0, BodyParam()), 
+    __param(0, BodyParam()),
+    __param(1, BodyParam('message')), 
     __metadata('design:type', Function), 
-    __metadata('design:paramtypes', [Object]), 
+    __metadata('design:paramtypes', [Object, Object]), 
     __metadata('design:returntype', Promise)
 ], TestPostController.prototype, "json", null);
 __decorate([

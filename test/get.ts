@@ -84,6 +84,17 @@ class TestGetController {
             .entity(echo)
             .build();
     }
+    @GET
+    @Path('/json')
+    async json() {
+        return new Response()
+            .status(200)
+            .set('Content-Type', 'application/json')
+            .entity(JSON.stringify({
+                message: 'hello world',
+            }))
+            .build();
+    }
 }
 
 const app = new Koa();
@@ -123,4 +134,12 @@ describe('GET test', () => {
             .expect('hello world')
             .expect(200, done);
     });
+    it('should receive json', function (done) {
+        request(server)
+            .get('/get/json')
+            .expect({
+                message: 'hello world',
+            })
+            .expect(200, done);
+    })
 })

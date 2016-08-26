@@ -70,9 +70,6 @@ class Router {
                 for (let key in result.fields) {
                     body[key] = result.fields[key];
                 }
-                for (let key in result.files) {
-                    body[key] = result.files[key];
-                }
                 return body;
             }
             return null;
@@ -116,9 +113,6 @@ class Router {
         let ret = this.getParameterValue(parameter, context);
         if (!ret)
             return null;
-        if ([Object, String, Date, Number, Boolean].indexOf(parameter.type) !== -1) {
-            return ret;
-        }
         return ret;
     }
     routes() {
