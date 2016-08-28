@@ -21,7 +21,6 @@ const DELETE_1 = require('./decorators/DELETE');
 const GET_1 = require('./decorators/GET');
 const HEAD_1 = require('./decorators/HEAD');
 const HeaderParam_1 = require('./decorators/HeaderParam');
-const Inject_1 = require('./decorators/Inject');
 const Method_1 = require('./decorators/Method');
 const OPTIONS_1 = require('./decorators/OPTIONS');
 const POST_1 = require('./decorators/POST');
@@ -31,6 +30,7 @@ const Path_1 = require('./decorators/Path');
 const PathParam_1 = require('./decorators/PathParam');
 const Produce_1 = require('./decorators/Produce');
 const QueryParam_1 = require('./decorators/QueryParam');
+const Use_1 = require('./decorators/Use');
 exports.decorators = {
     BodyParam: BodyParam_1.default,
     Consume: Consume_1.default,
@@ -39,7 +39,6 @@ exports.decorators = {
     GET: GET_1.default,
     HEAD: HEAD_1.default,
     HeaderParam: HeaderParam_1.default,
-    Inject: Inject_1.default,
     Method: Method_1.default,
     OPTIONS: OPTIONS_1.default,
     POST: POST_1.default,
@@ -49,6 +48,7 @@ exports.decorators = {
     PathParam: PathParam_1.default,
     Produce: Produce_1.default,
     QueryParam: QueryParam_1.default,
+    Use: Use_1.default,
 };
 const Charset_1 = require('./enums/Charset');
 const HttpMethod_1 = require('./enums/HttpMethod');

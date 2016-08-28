@@ -24,7 +24,6 @@ export declare const decorators: {
     GET: (target: any, key: string) => void;
     HEAD: (target: any, key: string) => void;
     HeaderParam: (paramKey?: string) => (target: any, key?: string, index?: number) => void;
-    Inject: (func: IMiddleware) => (target: any, key?: string) => void;
     Method: (method: string) => (target: any, key: string) => void;
     OPTIONS: (target: any, key: string) => void;
     POST: (target: any, key: string) => void;
@@ -34,6 +33,7 @@ export declare const decorators: {
     PathParam: (paramKey?: string) => (target: any, key?: string, index?: number) => void;
     Produce: (type: enums_MediaType) => (target: any, key: string) => void;
     QueryParam: (paramKey?: string) => (target: any, key?: string, index?: number) => void;
+    Use: (func: IMiddleware) => (target: any, key?: string) => void;
 };
 import enums_Charset from './enums/Charset';
 import enums_HttpMethod from './enums/HttpMethod';

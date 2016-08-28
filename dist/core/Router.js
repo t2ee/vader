@@ -20,14 +20,14 @@ class Router {
     constructor() {
         this._routes = [];
     }
-    findMatchedRoute(ctx) {
+    findMatchedRoute(koaContext) {
         let matchedRoute;
         let params = {};
         for (let route of this._routes) {
-            if (route.method.toUpperCase() === ctx.method.toUpperCase()) {
+            if (route.method.toUpperCase() === koaContext.method.toUpperCase()) {
                 for (let i = 0; i < route.pathRegex.length; i++) {
                     let reg = route.pathRegex[i];
-                    let ret = reg.exec(ctx.path);
+                    let ret = reg.exec(koaContext.path);
                     if (ret) {
                         matchedRoute = route;
                         for (let j = 0; j < route.pathKeys[i].length; j++) {
@@ -43,35 +43,32 @@ class Router {
             params,
         };
     }
-    getBody(route, ctx) {
+    getBody(route, koaContext) {
         return __awaiter(this, void 0, void 0, function* () {
-            const contentType = (ctx.headers['content-type'] || '').split(';');
+            const contentType = (koaContext.headers['content-type'] || '').split(';');
             if (route.consume === MediaType_1.default.JSON &&
                 contentType.indexOf(MediaType_1.default.toString(MediaType_1.default.JSON)) !== -1) {
                 return yield new Promise((resolve, reject) => {
-                    parse.json(ctx).then(resolve).catch(reject);
+                    parse.json(koaContext).then(resolve).catch(reject);
                 });
             }
             else if (route.consume === MediaType_1.default.FORM &&
                 contentType.indexOf(MediaType_1.default.toString(MediaType_1.default.FORM)) !== -1) {
                 return yield new Promise((resolve, reject) => {
-                    parse.form(ctx).then(resolve).catch(reject);
+                    parse.form(koaContext).then(resolve).catch(reject);
                 });
             }
             else if (route.consume === MediaType_1.default.TEXT) {
                 return yield new Promise((resolve, reject) => {
-                    parse.text(ctx).then(resolve).catch(reject);
+                    parse.text(koaContext).then(resolve).catch(reject);
                 });
             }
             else if (route.consume === MediaType_1.default.MULTIPART &&
                 contentType.indexOf(MediaType_1.default.toString(MediaType_1.default.MULTIPART)) !== -1) {
-                let result = yield parseMulti_1.default(ctx);
+                let result = yield parseMulti_1.default(koaContext);
                 let body = {};
                 for (let key in result.fields) {
                     body[key] = result.fields[key];
-                }
-                for (let key in result.files) {
-                    body[key] = result.files[key];
                 }
                 return body;
             }
@@ -116,21 +113,18 @@ class Router {
         let ret = this.getParameterValue(parameter, context);
         if (!ret)
             return null;
-        if ([Object, String, Date, Number, Boolean].indexOf(parameter.type) !== -1) {
-            return ret;
-        }
         return ret;
     }
     routes() {
-        return (ctx, next) => __awaiter(this, void 0, void 0, function* () {
+        return (koaContext, next) => __awaiter(this, void 0, void 0, function* () {
             const self = this;
-            const { matchedRoute, params, } = this.findMatchedRoute(ctx);
+            const { matchedRoute, params, } = this.findMatchedRoute(koaContext);
             if (matchedRoute) {
                 const context = new VaderContext_1.default();
                 context.params = params;
-                context.headers = ctx.headers;
-                context.query = ctx.query;
-                context.body = yield this.getBody(matchedRoute, ctx);
+                context.headers = koaContext.headers;
+                context.query = koaContext.query;
+                context.body = yield this.getBody(matchedRoute, koaContext);
                 yield run(_next(context), context);
                 yield next();
                 function run(next, context) {
@@ -162,7 +156,7 @@ class Router {
                         }
                         let router = new controllerClass();
                         const response = yield router[matchedRoute.route](...parameters);
-                        response.send(ctx);
+                        response.send(koaContext);
                     });
                 }
             }
