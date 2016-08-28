@@ -7,17 +7,17 @@ const debug = Debugger('decorator');
 
 const Property = Symbol.Property;
 
-export default function Inject(func: IMiddleware) {
+export default function Use(func: IMiddleware) {
     return (target, key?: string) => {
         if (key) {
-            debug(`Mounting @Inject(${func}) on method '${key}'`);
+            debug(`Mounting @Use(${func}) on method '${key}'`);
             target[Property] = target[Property] || new ControllerProperty();
             target[Property].routes[key] =
                                     target[Property].routes[key] ||
                                     new RouteProperty();
             target[Property].routes[key].wares.push(func);
         } else {
-            debug(`Mounting @Inject(${func})`);
+            debug(`Mounting @Use(${func})`);
             target.prototype[Property] = target.prototype[Property] || new RouteProperty();
             target.prototype[Property].wares.push(func);
         }

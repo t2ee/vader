@@ -5,7 +5,7 @@ import * as Koa from 'koa';
 const {
     GET,
     Path,
-    Inject,
+    Use,
     Context,
 } = vader.decorators;
 
@@ -46,14 +46,14 @@ async function middleware4(context, next) {
     context['counter']++;
 }
 
-@Inject(middleware1)
-@Inject(middleware2)
+@Use(middleware1)
+@Use(middleware2)
 @Path('/inject')
 class TestController {
     @GET
     @Path('')
-    @Inject(middleware3)
-    @Inject(middleware4)
+    @Use(middleware3)
+    @Use(middleware4)
     async basic(
         @Context() context) {
         chai.assert.isOk(context['counter'] === 4);
@@ -69,7 +69,7 @@ const router = new Router();
 router.use(TestController);
 app.use(router.routes());
 let server;
-describe('@Inject test', () => {
+describe('@Use test', () => {
     before(() => {
         server = app.listen(3000)
     })

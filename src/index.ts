@@ -22,7 +22,6 @@ import decorators_DELETE from './decorators/DELETE'
 import decorators_GET from './decorators/GET'
 import decorators_HEAD from './decorators/HEAD'
 import decorators_HeaderParam from './decorators/HeaderParam'
-import decorators_Inject from './decorators/Inject'
 import decorators_Method from './decorators/Method'
 import decorators_OPTIONS from './decorators/OPTIONS'
 import decorators_POST from './decorators/POST'
@@ -32,6 +31,7 @@ import decorators_Path from './decorators/Path'
 import decorators_PathParam from './decorators/PathParam'
 import decorators_Produce from './decorators/Produce'
 import decorators_QueryParam from './decorators/QueryParam'
+import decorators_Use from './decorators/Use'
 export const decorators = {
 	BodyParam: decorators_BodyParam,
 	Consume: decorators_Consume,
@@ -40,7 +40,6 @@ export const decorators = {
 	GET: decorators_GET,
 	HEAD: decorators_HEAD,
 	HeaderParam: decorators_HeaderParam,
-	Inject: decorators_Inject,
 	Method: decorators_Method,
 	OPTIONS: decorators_OPTIONS,
 	POST: decorators_POST,
@@ -50,6 +49,7 @@ export const decorators = {
 	PathParam: decorators_PathParam,
 	Produce: decorators_Produce,
 	QueryParam: decorators_QueryParam,
+	Use: decorators_Use,
 };
 import enums_Charset from './enums/Charset'
 import enums_HttpMethod from './enums/HttpMethod'

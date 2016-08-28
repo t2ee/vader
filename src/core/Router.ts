@@ -30,7 +30,6 @@ interface Route {
     params: Array<IParameter>;
 }
 
-
 class Router {
     private _routes: Array<Route> = [];
 

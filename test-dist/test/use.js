@@ -23,7 +23,7 @@ const vader = require('../src');
 const chai = require('chai');
 const request = require('supertest');
 const Koa = require('koa');
-const { GET, Path, Inject, Context, } = vader.decorators;
+const { GET, Path, Use, Context, } = vader.decorators;
 const { VaderContext, Response, Router, } = vader.core;
 let counter = 0;
 function middleware1(context, next) {
@@ -76,16 +76,16 @@ let TestController = class TestController {
 __decorate([
     GET,
     Path(''),
-    Inject(middleware3),
-    Inject(middleware4),
+    Use(middleware3),
+    Use(middleware4),
     __param(0, Context()), 
     __metadata('design:type', Function), 
     __metadata('design:paramtypes', [Object]), 
     __metadata('design:returntype', Promise)
 ], TestController.prototype, "basic", null);
 TestController = __decorate([
-    Inject(middleware1),
-    Inject(middleware2),
+    Use(middleware1),
+    Use(middleware2),
     Path('/inject'), 
     __metadata('design:paramtypes', [])
 ], TestController);
@@ -110,4 +110,4 @@ describe('@Inject test', () => {
         });
     });
 });
-//# sourceMappingURL=inject.js.map
+//# sourceMappingURL=use.js.map
