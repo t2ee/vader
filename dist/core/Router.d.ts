@@ -4,11 +4,13 @@ import IParameter from '../core/IParameter';
 import VaderContext from '../core/VaderContext';
 declare class Router {
     private _routes;
+    private _providers;
     private findMatchedRoute(koaContext);
     private getBody(route, koaContext);
-    getParameterValue(parameter: IParameter, context: VaderContext): any;
-    getParameter(parameter: IParameter, context: VaderContext): any;
+    getParameterValue(parameter: IParameter, context: VaderContext): Promise<any>;
+    getParameter(parameter: IParameter, context: VaderContext): Promise<any>;
     routes(): (koaContext: Koa.Context, next: () => Promise<any>) => Promise<void>;
-    use<T>(controllerClass: new (...args) => T): void;
+    provide(name: string, fn: (parameter: IParameter, context: VaderContext) => Promise<any>): void;
+    use(controllerClass: new (...args: Array<any>) => any): void;
 }
 export default Router;

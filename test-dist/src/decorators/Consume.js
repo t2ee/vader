@@ -1,18 +1,15 @@
 "use strict";
-const Symbol_1 = require('../enums/Symbol');
-const ControllerProperty_1 = require('../core/ControllerProperty');
-const RouteProperty_1 = require('../core/RouteProperty');
 const MediaType_1 = require('../enums/MediaType');
-const Debugger = require('debug');
-const debug = Debugger('decorator');
-const Property = Symbol_1.default.Property;
+const debug_1 = require('../utils/debug');
+const ControllerProperty_1 = require('../core/ControllerProperty');
+const Property_1 = require('../enums/Property');
+const CLASS = Property_1.default.CLASS;
+const debug = debug_1.default('vader:decorator');
 function Consume(type) {
     return (target, key) => {
         debug(`Mounting @Consume(${MediaType_1.default.toString(type)})`);
-        target[Property] = target[Property] || new ControllerProperty_1.default();
-        target[Property].routes[key] = target[Property].routes[key] ||
-            new RouteProperty_1.default();
-        target[Property].routes[key].consume = type;
+        target[CLASS] = target[CLASS] || new ControllerProperty_1.default();
+        target[CLASS].ROUTES[key].CONSUME = type;
     };
 }
 Object.defineProperty(exports, "__esModule", { value: true });

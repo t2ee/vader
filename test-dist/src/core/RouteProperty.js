@@ -1,9 +1,9 @@
 "use strict";
 class RouteProperty {
     constructor() {
-        this.paths = [];
-        this.wares = [];
-        this.params = [];
+        this.PATHS = [];
+        this.WARES = [];
+        this.PARAMS = [];
     }
 }
 Object.defineProperty(exports, "__esModule", { value: true });

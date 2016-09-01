@@ -12,13 +12,14 @@ const _ = require('lodash');
 const parse = require('co-body');
 const parseMulti_1 = require('../utils/parseMulti');
 const MediaType_1 = require('../enums/MediaType');
-const Symbol_1 = require('../enums/Symbol');
 const ParamType_1 = require('../enums/ParamType');
 const VaderContext_1 = require('../core/VaderContext');
-const Property = Symbol_1.default.Property;
+const Property_1 = require('../enums/Property');
+const CLASS = Property_1.default.CLASS;
 class Router {
     constructor() {
         this._routes = [];
+        this._providers = {};
     }
     findMatchedRoute(koaContext) {
         let matchedRoute;
@@ -76,44 +77,52 @@ class Router {
         });
     }
     getParameterValue(parameter, context) {
-        switch (parameter.paramType) {
-            case ParamType_1.default.QueryParam:
-                if (parameter.paramKey) {
-                    return _.get(context.query, parameter.paramKey);
-                }
-                else {
-                    return context.query;
-                }
-            case ParamType_1.default.PathParam:
-                if (parameter.paramKey) {
-                    return _.get(context.params, parameter.paramKey);
-                }
-                else {
-                    return context.params;
-                }
-            case ParamType_1.default.BodyParam:
-                if (parameter.paramKey) {
-                    return _.get(context.body, parameter.paramKey);
-                }
-                else {
-                    return context.body;
-                }
-            case ParamType_1.default.HeaderParam:
-                if (parameter.paramKey) {
-                    return _.get(context.headers, parameter.paramKey);
-                }
-                else {
-                    return context.headers;
-                }
-            case ParamType_1.default.Context:
-                return context;
-        }
+        return __awaiter(this, void 0, void 0, function* () {
+            switch (parameter.paramType) {
+                case ParamType_1.default.QueryParam:
+                    if (parameter.paramKey) {
+                        return _.get(context.query, parameter.paramKey);
+                    }
+                    else {
+                        return context.query;
+                    }
+                case ParamType_1.default.PathParam:
+                    if (parameter.paramKey) {
+                        return _.get(context.params, parameter.paramKey);
+                    }
+                    else {
+                        return context.params;
+                    }
+                case ParamType_1.default.BodyParam:
+                    if (parameter.paramKey) {
+                        return _.get(context.body, parameter.paramKey);
+                    }
+                    else {
+                        return context.body;
+                    }
+                case ParamType_1.default.HeaderParam:
+                    if (parameter.paramKey) {
+                        return _.get(context.headers, parameter.paramKey);
+                    }
+                    else {
+                        return context.headers;
+                    }
+                case ParamType_1.default.Context:
+                    return context;
+                default:
+                    if (this._providers[parameter.paramType]) {
+                        return yield this._providers[parameter.paramType](parameter, context);
+                    }
+            }
+        });
     }
     getParameter(parameter, context) {
-        let ret = this.getParameterValue(parameter, context);
-        if (!ret)
-            return null;
-        return ret;
+        return __awaiter(this, void 0, void 0, function* () {
+            let ret = yield this.getParameterValue(parameter, context);
+            if (!ret)
+                return null;
+            return ret;
+        });
     }
     routes() {
         return (koaContext, next) => __awaiter(this, void 0, void 0, function* () {
@@ -135,7 +144,7 @@ class Router {
                             }))(next, ware);
                         }
                         const controllerClass = matchedRoute.controllerClass;
-                        for (const ware of controllerClass.prototype[Property].wares) {
+                        for (const ware of controllerClass.prototype[CLASS].WARES) {
                             next = ((next, ware) => () => __awaiter(this, void 0, void 0, function* () {
                                 return yield ware(context, next);
                             }))(next, ware);
@@ -147,12 +156,12 @@ class Router {
                     return () => __awaiter(this, void 0, void 0, function* () {
                         let parameters = [];
                         const controllerClass = matchedRoute.controllerClass;
-                        for (const parameter of matchedRoute.params) {
-                            parameters.push(self.getParameter(parameter, context));
+                        for (const param of matchedRoute.params) {
+                            parameters.push(yield self.getParameter(param, context));
                         }
-                        for (const key in controllerClass.prototype[Property].params) {
-                            controllerClass.prototype[key] =
-                                self.getParameter(controllerClass.prototype[Property].params[key], context);
+                        for (const param of controllerClass.prototype[CLASS].PARAMS) {
+                            controllerClass.prototype[param.key] =
+                                yield self.getParameter(param, context);
                         }
                         let router = new controllerClass();
                         const response = yield router[matchedRoute.route](...parameters);
@@ -162,30 +171,33 @@ class Router {
             }
         });
     }
+    provide(name, fn) {
+        this._providers[name] = fn;
+    }
     use(controllerClass) {
         const controller = controllerClass.prototype;
-        const property = controller[Property];
-        for (const key in property.routes) {
+        const property = controller[CLASS];
+        for (const key in property.ROUTES) {
             const pathRegex = [];
             const pathKeys = [];
-            const route = property.routes[key];
-            for (const path of route.paths) {
+            const route = property.ROUTES[key];
+            for (const path of route.PATHS) {
                 const keys = [];
-                const regex = pathToRegexp(property.path + path, keys);
+                const regex = pathToRegexp(property.PATH + path, keys);
                 pathRegex.push(regex);
                 pathKeys.push(keys);
             }
             this._routes.push({
                 controllerClass,
-                method: route.method,
-                path: route.paths.map(p => property.path + p),
-                consume: route.consume,
-                produce: route.produce,
+                method: route.METHOD,
+                path: route.PATHS.map(p => property.PATH + p),
+                consume: route.CONSUME,
+                produce: route.PRODUCE,
                 route: key,
-                wares: route.wares,
+                wares: route.WARES,
                 pathRegex,
                 pathKeys,
-                params: route.params,
+                params: route.PARAMS,
             });
         }
     }

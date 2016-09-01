@@ -5,16 +5,16 @@ const parse: any = require('co-body');
 import parseMulti from  '../utils/parseMulti';
 import MediaType from  '../enums/MediaType';
 import HttpMethod from  '../enums/HttpMethod';
-import Symbol from  '../enums/Symbol';
-import ControllerProperty from  '../core/ControllerProperty';
 import RouteProperty from  '../core/RouteProperty';
 import IParameter from  '../core/IParameter';
 import ParamType from  '../enums/ParamType';
 import IMiddleware from  '../core/IMiddleware';
 import VaderContext from  '../core/VaderContext';
 import Response from  '../core/Response';
+import ControllerProperty from '../core/ControllerProperty';
+import Property from '../enums/Property';
+const CLASS = Property.CLASS;
 
-const Property = Symbol.Property;
 
 
 interface Route {
@@ -32,6 +32,7 @@ interface Route {
 
 class Router {
     private _routes: Array<Route> = [];
+    private _providers: { [key: string]: (parameter: IParameter, context: VaderContext) => Promise<any> } = {};
 
     private findMatchedRoute(koaContext: Koa.Context) {
         let matchedRoute;
@@ -87,7 +88,7 @@ class Router {
         return null;
     }
 
-    getParameterValue(parameter: IParameter, context: VaderContext) {
+    async getParameterValue(parameter: IParameter, context: VaderContext) {
         switch (parameter.paramType) {
             case ParamType.QueryParam:
                 if (parameter.paramKey) {
@@ -115,11 +116,15 @@ class Router {
                 }
             case ParamType.Context:
                 return context;
+            default:
+                if (this._providers[parameter.paramType]) {
+                    return await this._providers[parameter.paramType](parameter, context);
+                }
         }
     }
 
-    getParameter(parameter: IParameter, context: VaderContext) {
-        let ret = this.getParameterValue(parameter, context);
+    async getParameter(parameter: IParameter, context: VaderContext) {
+        let ret = await this.getParameterValue(parameter, context);
         if (!ret) return null;
         return ret;
     }
@@ -148,7 +153,7 @@ class Router {
                             await ware(context, next))(next, ware);
                     }
                     const controllerClass = matchedRoute.controllerClass;
-                    for (const ware of controllerClass.prototype[Property].wares) {
+                    for (const ware of controllerClass.prototype[CLASS].WARES) {
                         next = ((next, ware) => async () =>
                             await ware(context, next))(next, ware);
                     }
@@ -157,56 +162,57 @@ class Router {
 
                 function _next(context) {
                     return async () => {
-                    let parameters = [];
-                    const controllerClass = matchedRoute.controllerClass;
+                        let parameters = [];
+                        const controllerClass = matchedRoute.controllerClass;
+                        for (const param of matchedRoute.params) {
+                            parameters.push(await self.getParameter(param, context));
+                        }
 
+                        for (const param of controllerClass.prototype[CLASS].PARAMS) {
+                            controllerClass.prototype[param.key] =
+                                await self.getParameter(param, context);
+                        }
 
-                    for (const parameter of matchedRoute.params) {
-                        parameters.push(self.getParameter(parameter, context));
-                    }
-
-                    for (const key in controllerClass.prototype[Property].params) {
-                        controllerClass.prototype[key] =
-                            self.getParameter(
-                                controllerClass.prototype[Property].params[key],
-                                context);
-                    }
-
-                    let router = new controllerClass();
-                    const response = await router[matchedRoute.route](...parameters);
-                    response.send(koaContext);
-                };
+                        let router = new controllerClass();
+                        const response = await router[matchedRoute.route](...parameters);
+                        response.send(koaContext);
+                    };
+                }
             }
-        }
 
         };
     }
 
-    use<T>(controllerClass: new (...args) => T) {
+
+    provide(name: string, fn: (parameter: IParameter, context: VaderContext) => Promise<any>) {
+        this._providers[name] = fn;
+    }
+
+    use(controllerClass: new (...args: Array<any>) => any) {
         const controller = controllerClass.prototype;
-        const property: ControllerProperty = controller[Property];
-        for (const key in property.routes) {
+        const property = controller[CLASS];
+        for (const key in property.ROUTES) {
             const pathRegex = [];
             const pathKeys = [];
-            const route = property.routes[key];
-            for (const path of route.paths) {
+            const route = property.ROUTES[key];
+            for (const path of route.PATHS) {
                 const keys: pathToRegexp.Key[] = [];
-                const regex = pathToRegexp(property.path + path, keys);
+                const regex = pathToRegexp(property.PATH + path, keys);
                 pathRegex.push(regex);
                 pathKeys.push(keys);
             }
 
             this._routes.push({
                 controllerClass,
-                method: route.method,
-                path: route.paths.map(p => property.path + p),
-                consume: route.consume,
-                produce: route.produce,
+                method: route.METHOD,
+                path: route.PATHS.map(p => property.PATH + p),
+                consume: route.CONSUME,
+                produce: route.PRODUCE,
                 route: key,
-                wares: route.wares,
+                wares: route.WARES,
                 pathRegex,
                 pathKeys,
-                params: route.params,
+                params: route.PARAMS,
             });
         }
     }

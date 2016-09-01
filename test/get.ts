@@ -39,6 +39,7 @@ class TestGetController {
             .entity('hello world')
             .build();
     }
+
     @GET
     @Path('/query')
     async query(
@@ -54,6 +55,7 @@ class TestGetController {
             .entity(echo)
             .build();
     }
+
     @GET
     @Path('/path/:echo')
     async path(
@@ -69,6 +71,7 @@ class TestGetController {
             .entity(echo)
             .build();
     }
+
     @GET
     @Path('/header')
     async header(
@@ -84,6 +87,7 @@ class TestGetController {
             .entity(echo)
             .build();
     }
+
     @GET
     @Path('/json')
     async json() {

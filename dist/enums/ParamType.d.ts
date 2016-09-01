@@ -4,6 +4,7 @@ declare enum ParamType {
     HeaderParam = 2,
     BodyParam = 3,
     Context = 4,
+    External = 5,
 }
 declare namespace ParamType {
     function toString(type: ParamType): string;

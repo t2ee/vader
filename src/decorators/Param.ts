@@ -1,34 +1,34 @@
-import Symbol from  '../enums/Symbol';
-import ControllerProperty from  '../core/ControllerProperty';
 import RouteProperty from  '../core/RouteProperty';
 import ParamType from  '../enums/ParamType';
-import * as Debugger from 'debug';
+import Debugger from '../utils/debug';
 import 'reflect-metadata';
-const debug = Debugger('decorator');
-
-const Property = Symbol.Property;
+import ControllerProperty from '../core/ControllerProperty';
+import Property from '../enums/Property';
+const CLASS = Property.CLASS;
+const debug = Debugger('vader:decorator');
 
 export default function Param(paramType: ParamType, paramKey?: string) {
     return (target, key?: string, index?: number) => {
-        target[Property] = target[Property] || new ControllerProperty();
         if (index !== undefined) {
-            debug(`Mounting @${ParamType.toString(paramType)}('${paramKey}')} on method '${key}', ${index}th parameter`);
+            debug(`Mounting @${ParamType.toString(paramType)}('${paramKey || ''}') on method '${key}', ${index}th parameter`);
             let type = Reflect.getMetadata('design:paramtypes', target, key)[index];
-            target[Property].routes[key] = target[Property].routes[key] ||
-                                    new RouteProperty();
-            target[Property].routes[key].params[index] = {
+            target[CLASS] = target[CLASS] || new ControllerProperty();
+            target[CLASS].ROUTES[key].PARAMS[index] = {
                 type,
                 paramKey,
                 paramType,
+                key,
             };
         } else {
-            debug(`Mounting @${ParamType.toString(paramType)}('${paramKey}')}`);
+            debug(`Mounting @${ParamType.toString(paramType)}('${paramKey || ''}') on ${key}`);
             let type = Reflect.getMetadata('design:type', target, key);
-            target[Property].params[key] = {
+            target[CLASS] = target[CLASS] || new ControllerProperty();
+            target[CLASS].PARAMS.push({
                 type,
                 paramKey,
                 paramType,
-            };
+                key,
+            });
         }
     };
 }

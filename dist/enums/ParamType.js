@@ -6,6 +6,7 @@ var ParamType;
     ParamType[ParamType["HeaderParam"] = 2] = "HeaderParam";
     ParamType[ParamType["BodyParam"] = 3] = "BodyParam";
     ParamType[ParamType["Context"] = 4] = "Context";
+    ParamType[ParamType["External"] = 5] = "External";
 })(ParamType || (ParamType = {}));
 var ParamType;
 (function (ParamType) {
@@ -21,6 +22,8 @@ var ParamType;
                 return 'BodyParam';
             case ParamType.Context:
                 return 'Context';
+            case ParamType.External:
+                return 'External';
         }
     }
     ParamType.toString = toString;

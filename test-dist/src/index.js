@@ -54,18 +54,24 @@ const Charset_1 = require('./enums/Charset');
 const HttpMethod_1 = require('./enums/HttpMethod');
 const MediaType_1 = require('./enums/MediaType');
 const ParamType_1 = require('./enums/ParamType');
+const Property_1 = require('./enums/Property');
 const Status_1 = require('./enums/Status');
-const Symbol_1 = require('./enums/Symbol');
 exports.enums = {
     Charset: Charset_1.default,
     HttpMethod: HttpMethod_1.default,
     MediaType: MediaType_1.default,
     ParamType: ParamType_1.default,
+    Property: Property_1.default,
     Status: Status_1.default,
-    Symbol: Symbol_1.default,
 };
+const createArray_1 = require('./utils/createArray');
+const debug_1 = require('./utils/debug');
+const decorate_1 = require('./utils/decorate');
 const parseMulti_1 = require('./utils/parseMulti');
 exports.utils = {
+    createArray: createArray_1.default,
+    debug: debug_1.default,
+    decorate: decorate_1.default,
     parseMulti: parseMulti_1.default,
 };
 //# sourceMappingURL=index.js.map

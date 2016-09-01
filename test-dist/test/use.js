@@ -94,7 +94,7 @@ const router = new Router();
 router.use(TestController);
 app.use(router.routes());
 let server;
-describe('@Inject test', () => {
+describe('@Use test', () => {
     before(() => {
         server = app.listen(3000);
     });

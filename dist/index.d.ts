@@ -39,16 +39,19 @@ import enums_Charset from './enums/Charset';
 import enums_HttpMethod from './enums/HttpMethod';
 import enums_MediaType from './enums/MediaType';
 import enums_ParamType from './enums/ParamType';
+import enums_Property from './enums/Property';
 import enums_Status from './enums/Status';
-import enums_Symbol from './enums/Symbol';
 export declare const enums: {
     Charset: typeof enums_Charset;
     HttpMethod: typeof enums_HttpMethod;
     MediaType: typeof enums_MediaType;
     ParamType: typeof enums_ParamType;
+    Property: typeof enums_Property;
     Status: typeof enums_Status;
-    Symbol: typeof enums_Symbol;
 };
 export declare const utils: {
+    createArray: <T>(type: new () => T) => T[];
+    debug: (name: any) => any;
+    decorate: (func: (property: core_ControllerProperty) => (target: any, key?: string, index?: number) => void) => (target: any, key?: string, index?: number) => void;
     parseMulti: (koaContext: Koa.Context, opts?: any) => Promise<any>;
 };

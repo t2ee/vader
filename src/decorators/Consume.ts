@@ -1,18 +1,16 @@
-import Symbol from  '../enums/Symbol';
-import ControllerProperty from  '../core/ControllerProperty';
 import RouteProperty from  '../core/RouteProperty';
 import MediaType from  '../enums/MediaType';
-import * as Debugger from 'debug';
-const debug = Debugger('decorator');
+import Debugger from '../utils/debug';
+import ControllerProperty from '../core/ControllerProperty';
+import Property from '../enums/Property';
+const CLASS = Property.CLASS;
 
-const Property = Symbol.Property;
+const debug = Debugger('vader:decorator');
 
 export default function Consume(type: MediaType) {
     return (target, key: string) => {
         debug(`Mounting @Consume(${MediaType.toString(type)})`);
-        target[Property] = target[Property] || new ControllerProperty();
-        target[Property].routes[key] = target[Property].routes[key] ||
-                                new RouteProperty();
-        target[Property].routes[key].consume = type;
+        target[CLASS] = target[CLASS] || new ControllerProperty();
+        target[CLASS].ROUTES[key].CONSUME = type;
     }
 }

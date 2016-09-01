@@ -1,34 +1,34 @@
 "use strict";
-const Symbol_1 = require('../enums/Symbol');
-const ControllerProperty_1 = require('../core/ControllerProperty');
-const RouteProperty_1 = require('../core/RouteProperty');
 const ParamType_1 = require('../enums/ParamType');
-const Debugger = require('debug');
+const debug_1 = require('../utils/debug');
 require('reflect-metadata');
-const debug = Debugger('decorator');
-const Property = Symbol_1.default.Property;
+const ControllerProperty_1 = require('../core/ControllerProperty');
+const Property_1 = require('../enums/Property');
+const CLASS = Property_1.default.CLASS;
+const debug = debug_1.default('vader:decorator');
 function Param(paramType, paramKey) {
     return (target, key, index) => {
-        target[Property] = target[Property] || new ControllerProperty_1.default();
         if (index !== undefined) {
-            debug(`Mounting @${ParamType_1.default.toString(paramType)}('${paramKey}')} on method '${key}', ${index}th parameter`);
+            debug(`Mounting @${ParamType_1.default.toString(paramType)}('${paramKey || ''}') on method '${key}', ${index}th parameter`);
             let type = Reflect.getMetadata('design:paramtypes', target, key)[index];
-            target[Property].routes[key] = target[Property].routes[key] ||
-                new RouteProperty_1.default();
-            target[Property].routes[key].params[index] = {
+            target[CLASS] = target[CLASS] || new ControllerProperty_1.default();
+            target[CLASS].ROUTES[key].PARAMS[index] = {
                 type,
                 paramKey,
                 paramType,
+                key,
             };
         }
         else {
-            debug(`Mounting @${ParamType_1.default.toString(paramType)}('${paramKey}')}`);
+            debug(`Mounting @${ParamType_1.default.toString(paramType)}('${paramKey || ''}') on ${key}`);
             let type = Reflect.getMetadata('design:type', target, key);
-            target[Property].params[key] = {
+            target[CLASS] = target[CLASS] || new ControllerProperty_1.default();
+            target[CLASS].PARAMS.push({
                 type,
                 paramKey,
                 paramType,
-            };
+                key,
+            });
         }
     };
 }

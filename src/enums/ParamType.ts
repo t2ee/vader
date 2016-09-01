@@ -4,6 +4,7 @@ enum ParamType {
     HeaderParam,
     BodyParam,
     Context,
+    External,
 }
 
 namespace ParamType {
@@ -19,6 +20,8 @@ namespace ParamType {
                 return 'BodyParam';
             case ParamType.Context:
                 return 'Context';
+            case ParamType.External:
+                return 'External';
         }
     }
 }

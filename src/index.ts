@@ -55,17 +55,23 @@ import enums_Charset from './enums/Charset'
 import enums_HttpMethod from './enums/HttpMethod'
 import enums_MediaType from './enums/MediaType'
 import enums_ParamType from './enums/ParamType'
+import enums_Property from './enums/Property'
 import enums_Status from './enums/Status'
-import enums_Symbol from './enums/Symbol'
 export const enums = {
 	Charset: enums_Charset,
 	HttpMethod: enums_HttpMethod,
 	MediaType: enums_MediaType,
 	ParamType: enums_ParamType,
+	Property: enums_Property,
 	Status: enums_Status,
-	Symbol: enums_Symbol,
 };
+import utils_createArray from './utils/createArray'
+import utils_debug from './utils/debug'
+import utils_decorate from './utils/decorate'
 import utils_parseMulti from './utils/parseMulti'
 export const utils = {
+	createArray: utils_createArray,
+	debug: utils_debug,
+	decorate: utils_decorate,
 	parseMulti: utils_parseMulti,
 };
