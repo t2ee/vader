@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/core/Router.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/core/</a> Router.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">94.62% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>123/130</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">91.3% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>42/46</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">95.24% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>20/21</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">97.41% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>113/116</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">73×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">129×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">37×</span>
+<span class="cline-any cline-yes">37×</span>
+<span class="cline-any cline-yes">37×</span>
+<span class="cline-any cline-yes">37×</span>
+<span class="cline-any cline-yes">37×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39×</span>
+<span class="cline-any cline-yes">39×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var __awaiter = (this &amp;&amp; this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { <span class="cstat-no" title="statement not covered" >reject(e); </span>} }
+<span class="fstat-no" title="function not covered" >        function rejected(value) {</span> <span class="cstat-no" title="statement not covered" >try { <span class="cstat-no" title="statement not covered" >step(generator.throw(value)); </span>} catch (e) { <span class="cstat-no" title="statement not covered" >reject(e); </span>} </span>}
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments)).next());
+    });
+};
+const pathToRegexp = require('path-to-regexp');
+const _ = require('lodash');
+const parse = require('co-body');
+const parseMulti_1 = require('../utils/parseMulti');
+const MediaType_1 = require('../enums/MediaType');
+const Symbol_1 = require('../enums/Symbol');
+const ParamType_1 = require('../enums/ParamType');
+const VaderContext_1 = require('../core/VaderContext');
+const Property = Symbol_1.default.Property;
+class Router {
+    constructor() {
+        this._routes = [];
+    }
+    findMatchedRoute(koaContext) {
+        let matchedRoute;
+        let params = {};
+        for (let route of this._routes) {
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (route.method.toUpperCase() === koaContext.method.toUpperCase()) {
+                for (let i = 0; i &lt; route.pathRegex.length; i++) {
+                    let reg = route.pathRegex[i];
+                    let ret = reg.exec(koaContext.path);
+                    if (ret) {
+                        matchedRoute = route;
+                        for (let j = 0; j &lt; route.pathKeys[i].length; j++) {
+                            params[route.pathKeys[i][j].name] = ret[j + 1];
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        return {
+            matchedRoute,
+            params,
+        };
+    }
+    getBody(route, koaContext) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const contentType = (koaContext.headers['content-type'] || '').split(';');
+            if (route.consume === MediaType_1.default.JSON &amp;&amp;
+                contentType.indexOf(MediaType_1.default.toString(MediaType_1.default.JSON)) !== -1) {
+                return yield new Promise((resolve, reject) =&gt; {
+                    parse.json(koaContext).then(resolve).catch(reject);
+                });
+            }
+            else if (route.consume === MediaType_1.default.FORM &amp;&amp;
+                contentType.indexOf(MediaType_1.default.toString(MediaType_1.default.FORM)) !== -1) {
+                return yield new Promise((resolve, reject) =&gt; {
+                    parse.form(koaContext).then(resolve).catch(reject);
+                });
+            }
+            else if (route.consume === MediaType_1.default.TEXT) {
+                return yield new Promise((resolve, reject) =&gt; {
+                    parse.text(koaContext).then(resolve).catch(reject);
+                });
+            }
+            else if (route.consume === MediaType_1.default.MULTIPART &amp;&amp;
+                contentType.indexOf(MediaType_1.default.toString(MediaType_1.default.MULTIPART)) !== -1) {
+                let result = yield parseMulti_1.default(koaContext);
+                let body = {};
+                for (let key in result.fields) {
+                    body[key] = result.fields[key];
+                }
+                for (let key in result.files) {
+<span class="cstat-no" title="statement not covered" >                    body[key] = result.files[key];</span>
+                }
+                return body;
+            }
+            return null;
+        });
+    }
+    getParameterValue(parameter, context) {
+        switch (parameter.paramType) {
+            case ParamType_1.default.QueryParam:
+                if (parameter.paramKey) {
+                    return _.get(context.query, parameter.paramKey);
+                }
+                else {
+                    return context.query;
+                }
+            case ParamType_1.default.PathParam:
+                if (parameter.paramKey) {
+                    return _.get(context.params, parameter.paramKey);
+                }
+                else {
+                    return context.params;
+                }
+            case ParamType_1.default.BodyParam:
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (parameter.paramKey) {
+<span class="cstat-no" title="statement not covered" >                    return _.get(context.body, parameter.paramKey);</span>
+                }
+                else {
+                    return context.body;
+                }
+            case ParamType_1.default.HeaderParam:
+                if (parameter.paramKey) {
+                    return _.get(context.headers, parameter.paramKey);
+                }
+                else {
+                    return context.headers;
+                }
+            case ParamType_1.default.Context:
+                return context;
+        }
+    }
+    getParameter(parameter, context) {
+        let ret = this.getParameterValue(parameter, context);
+        if (!ret)
+            return null;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if ([Object, String, Date, Number, Boolean].indexOf(parameter.type) !== -1) {
+            return ret;
+        }
+<span class="cstat-no" title="statement not covered" >        return ret;</span>
+    }
+    routes() {
+        return (koaContext, next) =&gt; __awaiter(this, void 0, void 0, function* () {
+            const self = this;
+            const { matchedRoute, params, } = this.findMatchedRoute(koaContext);
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (matchedRoute) {
+                const context = new VaderContext_1.default();
+                context.params = params;
+                context.headers = koaContext.headers;
+                context.query = koaContext.query;
+                context.body = yield this.getBody(matchedRoute, koaContext);
+                yield run(_next(context), context);
+                yield next();
+                function run(next, context) {
+                    return __awaiter(this, void 0, void 0, function* () {
+                        for (const ware of matchedRoute.wares) {
+                            next = ((next, ware) =&gt; () =&gt; __awaiter(this, void 0, void 0, function* () {
+                                return yield ware(context, next);
+                            }))(next, ware);
+                        }
+                        const controllerClass = matchedRoute.controllerClass;
+                        for (const ware of controllerClass.prototype[Property].wares) {
+                            next = ((next, ware) =&gt; () =&gt; __awaiter(this, void 0, void 0, function* () {
+                                return yield ware(context, next);
+                            }))(next, ware);
+                        }
+                        yield next();
+                    });
+                }
+                function _next(context) {
+                    return () =&gt; __awaiter(this, void 0, void 0, function* () {
+                        let parameters = [];
+                        const controllerClass = matchedRoute.controllerClass;
+                        for (const parameter of matchedRoute.params) {
+                            parameters.push(self.getParameter(parameter, context));
+                        }
+                        for (const key in controllerClass.prototype[Property].params) {
+                            controllerClass.prototype[key] =
+                                self.getParameter(controllerClass.prototype[Property].params[key], context);
+                        }
+                        let router = new controllerClass();
+                        const response = yield router[matchedRoute.route](...parameters);
+                        response.send(koaContext);
+                    });
+                }
+            }
+        });
+    }
+    use(controllerClass) {
+        const controller = controllerClass.prototype;
+        const property = controller[Property];
+        for (const key in property.routes) {
+            const pathRegex = [];
+            const pathKeys = [];
+            const route = property.routes[key];
+            for (const path of route.paths) {
+                const keys = [];
+                const regex = pathToRegexp(property.path + path, keys);
+                pathRegex.push(regex);
+                pathKeys.push(keys);
+            }
+            this._routes.push({
+                controllerClass,
+                method: route.method,
+                path: route.paths.map(p =&gt; property.path + p),
+                consume: route.consume,
+                produce: route.produce,
+                route: key,
+                wares: route.wares,
+                pathRegex,
+                pathKeys,
+                params: route.params,
+            });
+        }
+    }
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = Router;
+//# sourceMappingURL=Router.js.map</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Aug 25 2016 17:57:14 GMT+0800 (CST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
