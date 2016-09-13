@@ -15,8 +15,8 @@ for (const dir of dirs) {
         for (const file of files) {
             const name= path.basename(file, path.extname(file));
             if (name[0] === 'I' && name !== 'Inject') continue;
-            output += `import ${dir}_${name} from './${dir}/${name}'\n`;
-            modules += `\t${name}: ${dir}_${name},\n`;
+            output += `import ${name} from './${dir}/${name}'\n`;
+            modules += `\t${name},\n`;
         }
         output += `export const ${dir} = {\n`;
         output += modules;
