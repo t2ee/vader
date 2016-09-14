@@ -1,6 +1,6 @@
 {
   "name": "@t2ee/vader",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "t2ee core component, router framework used on top of koa",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",

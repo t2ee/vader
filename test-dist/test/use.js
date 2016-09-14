@@ -60,6 +60,7 @@ function middleware4(context, next) {
         yield next();
         chai.assert.isOk(context['counter'] === 5);
         context['counter']++;
+        context.http.set('X-Custom', 'hello');
     });
 }
 let TestController = class TestController {
@@ -104,7 +105,11 @@ describe('@Use test', () => {
     it('should succeed', function (done) {
         request(server)
             .get('/inject')
-            .expect(200, () => {
+            .expect(200)
+            .end((err, res) => {
+            if (err)
+                throw err;
+            chai.assert.isOk(res.header['x-custom'] === 'hello');
             chai.assert.isOk(counter === 8);
             done();
         });

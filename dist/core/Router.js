@@ -134,6 +134,7 @@ class Router {
                 context.headers = koaContext.headers;
                 context.query = koaContext.query;
                 context.body = yield this.getBody(matchedRoute, koaContext);
+                context.http = koaContext;
                 yield run(_next(context), context);
                 yield next();
                 function run(next, context) {

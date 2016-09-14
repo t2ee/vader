@@ -143,6 +143,7 @@ class Router {
                 context.headers = koaContext.headers;
                 context.query = koaContext.query;
                 context.body =  await this.getBody(matchedRoute, koaContext);
+                context.http = koaContext;
 
                 await run(_next(context), context);
                 await next();
