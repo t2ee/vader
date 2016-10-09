@@ -1,19 +1,15 @@
 {
-	"compilerOptions": {
+    "compilerOptions": {
         "module": "commonjs",
-    	"outDir": "dist",
-    	"target": "ES6",
-    	"experimentalDecorators": true,
-    	"emitDecoratorMetadata": true,
+      	"outDir": "dist",
+        "target": "ES6",
+      	"experimentalDecorators": true,
+      	"emitDecoratorMetadata": true,
         "sourceMap": true,
         "moduleResolution": "node",
-        "declaration": true,
-        "baseUrl": "./src",
-        "paths": {
-            "*": [ "./*" ]
-        }
-	},
-	"compileOnSave": false,
+        "declaration": true
+    },
+	  "compileOnSave": false,
     "include": [
         "src/*.ts"
     ]
