@@ -1,4 +1,4 @@
-import * as vader from '../src';
+import * as vader from '../dist';
 import * as chai from 'chai';
 import * as request from 'supertest';
 import * as Koa from 'koa';
