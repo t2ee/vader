@@ -19,20 +19,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments)).next());
     });
 };
-const vader = require('../dist');
+const dist_1 = require('../dist');
 const chai = require('chai');
 const request = require('supertest');
 const Koa = require('koa');
-const { POST, Path, BodyParam, Consume, Produce, } = vader.decorators;
-const { MediaType, } = vader.enums;
-const { Response, Router, } = vader.core;
 let TestPostController = class TestPostController {
     json(body, message) {
         return __awaiter(this, void 0, void 0, function* () {
             chai.assert.equal(this.body.message, 'hello world');
             chai.assert.equal(body.message, 'hello world');
             chai.assert.equal(message, 'hello world');
-            return new Response()
+            return new dist_1.Response()
                 .status(200)
                 .build();
         });
@@ -41,7 +38,7 @@ let TestPostController = class TestPostController {
         return __awaiter(this, void 0, void 0, function* () {
             chai.assert.equal(this.body.message, 'hello world');
             chai.assert.equal(body.message, 'hello world');
-            return new Response()
+            return new dist_1.Response()
                 .status(200)
                 .build();
         });
@@ -50,7 +47,7 @@ let TestPostController = class TestPostController {
         return __awaiter(this, void 0, void 0, function* () {
             chai.assert.equal(this.body, 'hello world');
             chai.assert.equal(body, 'hello world');
-            return new Response()
+            return new dist_1.Response()
                 .status(200)
                 .build();
         });
@@ -61,59 +58,59 @@ let TestPostController = class TestPostController {
             chai.assert.equal(body.message, 'hello');
             chai.assert.equal(this.body.message2, 'world');
             chai.assert.equal(body.message2, 'world');
-            return new Response()
+            return new dist_1.Response()
                 .status(200)
                 .build();
         });
     }
 };
 __decorate([
-    BodyParam(), 
+    dist_1.BodyParam(), 
     __metadata('design:type', Object)
 ], TestPostController.prototype, "body", void 0);
 __decorate([
-    POST,
-    Consume(MediaType.JSON),
-    Path('/json'),
-    __param(0, BodyParam()),
-    __param(1, BodyParam('message')), 
+    dist_1.POST,
+    dist_1.Consume(dist_1.MediaType.JSON),
+    dist_1.Path('/json'),
+    __param(0, dist_1.BodyParam()),
+    __param(1, dist_1.BodyParam('message')), 
     __metadata('design:type', Function), 
     __metadata('design:paramtypes', [Object, Object]), 
     __metadata('design:returntype', Promise)
 ], TestPostController.prototype, "json", null);
 __decorate([
-    POST,
-    Consume(MediaType.FORM),
-    Path('/form'),
-    __param(0, BodyParam()), 
+    dist_1.POST,
+    dist_1.Consume(dist_1.MediaType.FORM),
+    dist_1.Path('/form'),
+    __param(0, dist_1.BodyParam()), 
     __metadata('design:type', Function), 
     __metadata('design:paramtypes', [Object]), 
     __metadata('design:returntype', Promise)
 ], TestPostController.prototype, "form", null);
 __decorate([
-    POST,
-    Consume(MediaType.TEXT),
-    Path('/text'),
-    __param(0, BodyParam()), 
+    dist_1.POST,
+    dist_1.Consume(dist_1.MediaType.TEXT),
+    dist_1.Path('/text'),
+    __param(0, dist_1.BodyParam()), 
     __metadata('design:type', Function), 
     __metadata('design:paramtypes', [Object]), 
     __metadata('design:returntype', Promise)
 ], TestPostController.prototype, "text", null);
 __decorate([
-    POST,
-    Consume(MediaType.MULTIPART),
-    Path('/multi'),
-    __param(0, BodyParam()), 
+    dist_1.POST,
+    dist_1.Consume(dist_1.MediaType.MULTIPART),
+    dist_1.Path('/multi'),
+    __param(0, dist_1.BodyParam()), 
     __metadata('design:type', Function), 
     __metadata('design:paramtypes', [Object]), 
     __metadata('design:returntype', Promise)
 ], TestPostController.prototype, "multi", null);
 TestPostController = __decorate([
-    Path('/post'), 
+    dist_1.Path('/post'), 
     __metadata('design:paramtypes', [])
 ], TestPostController);
 const app = new Koa();
-const router = new Router();
+const router = new dist_1.Router();
 router.use(TestPostController);
 app.use(router.routes());
 let server;

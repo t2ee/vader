@@ -1,19 +1,15 @@
-import * as vader from '../dist';
-import * as chai from 'chai';
-import * as request from 'supertest';
-import * as Koa from 'koa';
-const {
+import {
     GET,
     Path,
     Use,
     Context,
-} = vader.decorators;
-
-const {
     VaderContext,
     Response,
     Router,
-} = vader.core;
+} from '../dist';
+import * as chai from 'chai';
+import * as request from 'supertest';
+import * as Koa from 'koa';
 
 let counter = 0;
 
@@ -56,7 +52,7 @@ class TestController {
     @Use(middleware3)
     @Use(middleware4)
     async basic(
-        @Context() context) {
+        @Context() context: VaderContext) {
         chai.assert.isOk(context['counter'] === 4);
         context['counter']++;
         return new Response()

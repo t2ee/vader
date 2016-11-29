@@ -19,12 +19,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments)).next());
     });
 };
-const vader = require('../dist');
+const dist_1 = require('../dist');
 const chai = require('chai');
 const request = require('supertest');
 const Koa = require('koa');
-const { GET, Path, Use, Context, } = vader.decorators;
-const { VaderContext, Response, Router, } = vader.core;
 let counter = 0;
 function middleware1(context, next) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -68,30 +66,30 @@ let TestController = class TestController {
         return __awaiter(this, void 0, void 0, function* () {
             chai.assert.isOk(context['counter'] === 4);
             context['counter']++;
-            return new Response()
+            return new dist_1.Response()
                 .status(200)
                 .build();
         });
     }
 };
 __decorate([
-    GET,
-    Path(''),
-    Use(middleware3),
-    Use(middleware4),
-    __param(0, Context()), 
+    dist_1.GET,
+    dist_1.Path(''),
+    dist_1.Use(middleware3),
+    dist_1.Use(middleware4),
+    __param(0, dist_1.Context()), 
     __metadata('design:type', Function), 
-    __metadata('design:paramtypes', [Object]), 
+    __metadata('design:paramtypes', [dist_1.VaderContext]), 
     __metadata('design:returntype', Promise)
 ], TestController.prototype, "basic", null);
 TestController = __decorate([
-    Use(middleware1),
-    Use(middleware2),
-    Path('/inject'), 
+    dist_1.Use(middleware1),
+    dist_1.Use(middleware2),
+    dist_1.Path('/inject'), 
     __metadata('design:paramtypes', [])
 ], TestController);
 const app = new Koa();
-const router = new Router();
+const router = new dist_1.Router();
 router.use(TestController);
 app.use(router.routes());
 let server;

@@ -1,18 +1,15 @@
-import * as vader from '../dist';
-import * as chai from 'chai';
-import * as request from 'supertest';
-import * as Koa from 'koa';
-const {
+import {
     GET,
     Path,
     QueryParam,
     PathParam,
     HeaderParam,
-} = vader.decorators;
-const {
     Response,
     Router,
-} = vader.core;
+} from '../dist';
+import * as chai from 'chai';
+import * as request from 'supertest';
+import * as Koa from 'koa';
 
 @Path('/get')
 class TestGetController {

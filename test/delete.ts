@@ -1,15 +1,12 @@
-import * as vader from '../dist';
+import {
+    DELETE,
+    Path,
+    Response,
+    Router,
+} from '../dist';
 import * as chai from 'chai';
 import * as request from 'supertest';
 import * as Koa from 'koa';
-const {
-    DELETE,
-    Path,
-} = vader.decorators;
-const {
-    Response,
-    Router,
-} = vader.core;
 
 @Path('/delete')
 class TestDeleteController {

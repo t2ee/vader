@@ -19,18 +19,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments)).next());
     });
 };
-const vader = require('../dist');
+const dist_1 = require('../dist');
 const chai = require('chai');
 const request = require('supertest');
 const Koa = require('koa');
-const { GET, Path, QueryParam, PathParam, HeaderParam, } = vader.decorators;
-const { Response, Router, } = vader.core;
 let TestGetController = class TestGetController {
     basic() {
         return __awaiter(this, void 0, void 0, function* () {
             chai.assert.equal(Object.keys(this.queryParam).length, 0);
             chai.assert.equal(Object.keys(this.pathParam).length, 0);
-            return new Response()
+            return new dist_1.Response()
                 .status(200)
                 .entity('hello world')
                 .build();
@@ -42,7 +40,7 @@ let TestGetController = class TestGetController {
             chai.assert.equal(echo, 'hello world');
             chai.assert.equal(this.queryParam.echo, 'hello world');
             chai.assert.equal(this.queryEcho, 'hello world');
-            return new Response()
+            return new dist_1.Response()
                 .status(200)
                 .entity(echo)
                 .build();
@@ -54,7 +52,7 @@ let TestGetController = class TestGetController {
             chai.assert.equal(echo, 'hello%20world');
             chai.assert.equal(this.pathParam.echo, 'hello%20world');
             chai.assert.equal(this.pathEcho, 'hello%20world');
-            return new Response()
+            return new dist_1.Response()
                 .status(200)
                 .entity(echo)
                 .build();
@@ -66,7 +64,7 @@ let TestGetController = class TestGetController {
             chai.assert.equal(echo, 'hello world');
             chai.assert.equal(this.headerParam.echo, 'hello world');
             chai.assert.equal(this.headerEcho, 'hello world');
-            return new Response()
+            return new dist_1.Response()
                 .status(200)
                 .entity(echo)
                 .build();
@@ -74,7 +72,7 @@ let TestGetController = class TestGetController {
     }
     json() {
         return __awaiter(this, void 0, void 0, function* () {
-            return new Response()
+            return new dist_1.Response()
                 .status(200)
                 .set('Content-Type', 'application/json')
                 .entity(JSON.stringify({
@@ -85,76 +83,76 @@ let TestGetController = class TestGetController {
     }
 };
 __decorate([
-    QueryParam(), 
+    dist_1.QueryParam(), 
     __metadata('design:type', Object)
 ], TestGetController.prototype, "queryParam", void 0);
 __decorate([
-    QueryParam('echo'), 
+    dist_1.QueryParam('echo'), 
     __metadata('design:type', String)
 ], TestGetController.prototype, "queryEcho", void 0);
 __decorate([
-    PathParam(), 
+    dist_1.PathParam(), 
     __metadata('design:type', Object)
 ], TestGetController.prototype, "pathParam", void 0);
 __decorate([
-    PathParam('echo'), 
+    dist_1.PathParam('echo'), 
     __metadata('design:type', String)
 ], TestGetController.prototype, "pathEcho", void 0);
 __decorate([
-    HeaderParam(), 
+    dist_1.HeaderParam(), 
     __metadata('design:type', Object)
 ], TestGetController.prototype, "headerParam", void 0);
 __decorate([
-    HeaderParam('echo'), 
+    dist_1.HeaderParam('echo'), 
     __metadata('design:type', String)
 ], TestGetController.prototype, "headerEcho", void 0);
 __decorate([
-    GET,
-    Path('/basic'), 
+    dist_1.GET,
+    dist_1.Path('/basic'), 
     __metadata('design:type', Function), 
     __metadata('design:paramtypes', []), 
     __metadata('design:returntype', Promise)
 ], TestGetController.prototype, "basic", null);
 __decorate([
-    GET,
-    Path('/query'),
-    __param(0, QueryParam()),
-    __param(1, QueryParam('echo')), 
+    dist_1.GET,
+    dist_1.Path('/query'),
+    __param(0, dist_1.QueryParam()),
+    __param(1, dist_1.QueryParam('echo')), 
     __metadata('design:type', Function), 
     __metadata('design:paramtypes', [Object, Object]), 
     __metadata('design:returntype', Promise)
 ], TestGetController.prototype, "query", null);
 __decorate([
-    GET,
-    Path('/path/:echo'),
-    __param(0, PathParam()),
-    __param(1, PathParam('echo')), 
+    dist_1.GET,
+    dist_1.Path('/path/:echo'),
+    __param(0, dist_1.PathParam()),
+    __param(1, dist_1.PathParam('echo')), 
     __metadata('design:type', Function), 
     __metadata('design:paramtypes', [Object, Object]), 
     __metadata('design:returntype', Promise)
 ], TestGetController.prototype, "path", null);
 __decorate([
-    GET,
-    Path('/header'),
-    __param(0, HeaderParam()),
-    __param(1, HeaderParam('echo')), 
+    dist_1.GET,
+    dist_1.Path('/header'),
+    __param(0, dist_1.HeaderParam()),
+    __param(1, dist_1.HeaderParam('echo')), 
     __metadata('design:type', Function), 
     __metadata('design:paramtypes', [Object, Object]), 
     __metadata('design:returntype', Promise)
 ], TestGetController.prototype, "header", null);
 __decorate([
-    GET,
-    Path('/json'), 
+    dist_1.GET,
+    dist_1.Path('/json'), 
     __metadata('design:type', Function), 
     __metadata('design:paramtypes', []), 
     __metadata('design:returntype', Promise)
 ], TestGetController.prototype, "json", null);
 TestGetController = __decorate([
-    Path('/get'), 
+    dist_1.Path('/get'), 
     __metadata('design:paramtypes', [])
 ], TestGetController);
 const app = new Koa();
-const router = new Router();
+const router = new dist_1.Router();
 router.use(TestGetController);
 app.use(router.routes());
 let server;

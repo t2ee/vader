@@ -1,23 +1,16 @@
-import * as vader from '../dist';
-import * as chai from 'chai';
-import * as request from 'supertest';
-import * as Koa from 'koa';
-const {
+import {
     GET,
     QueryParam,
     Path,
-} = vader.decorators;
-const {
     Response,
     Router,
     ControllerProperty,
-} = vader.core;
-const {
     decorate,
-} = vader.utils;
-const {
     Property,
-} = vader.enums;
+} from '../dist';
+import * as chai from 'chai';
+import * as request from 'supertest';
+import * as Koa from 'koa';
 
 function Inject(property) {
     return (target, key?: string, index?: number) => {

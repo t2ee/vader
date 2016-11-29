@@ -1,21 +1,16 @@
-import * as vader from '../dist';
-import * as chai from 'chai';
-import * as request from 'supertest';
-import * as Koa from 'koa';
-const {
+import {
     POST,
     Path,
     BodyParam,
     Consume,
     Produce,
-} = vader.decorators;
-const {
     MediaType,
-} = vader.enums;
-const {
     Response,
     Router,
-} = vader.core;
+} from '../dist';
+import * as chai from 'chai';
+import * as request from 'supertest';
+import * as Koa from 'koa';
 
 @Path('/post')
 class TestPostController {

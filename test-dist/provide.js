@@ -16,14 +16,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments)).next());
     });
 };
-const vader = require('../dist');
+const dist_1 = require('../dist');
 const chai = require('chai');
 const request = require('supertest');
 const Koa = require('koa');
-const { GET, QueryParam, Path, } = vader.decorators;
-const { Response, Router, ControllerProperty, } = vader.core;
-const { decorate, } = vader.utils;
-const { Property, } = vader.enums;
 function Inject(property) {
     return (target, key, index) => {
         property.PARAMS.push({
@@ -37,33 +33,33 @@ let TestProvideController = class TestProvideController {
     basic() {
         return __awaiter(this, void 0, void 0, function* () {
             chai.assert.equal(this.testParam, 'test');
-            return new Response()
+            return new dist_1.Response()
                 .status(200)
                 .build();
         });
     }
 };
 __decorate([
-    QueryParam(), 
+    dist_1.QueryParam(), 
     __metadata('design:type', Object)
 ], TestProvideController.prototype, "query", void 0);
 __decorate([
-    decorate(Inject), 
+    dist_1.decorate(Inject), 
     __metadata('design:type', String)
 ], TestProvideController.prototype, "testParam", void 0);
 __decorate([
-    GET,
-    Path('/basic'), 
+    dist_1.GET,
+    dist_1.Path('/basic'), 
     __metadata('design:type', Function), 
     __metadata('design:paramtypes', []), 
     __metadata('design:returntype', Promise)
 ], TestProvideController.prototype, "basic", null);
 TestProvideController = __decorate([
-    Path(''), 
+    dist_1.Path(''), 
     __metadata('design:paramtypes', [])
 ], TestProvideController);
 const app = new Koa();
-const router = new Router();
+const router = new dist_1.Router();
 router.provide('Inject', (parameter, context) => __awaiter(this, void 0, void 0, function* () {
     return parameter.paramKey;
 }));

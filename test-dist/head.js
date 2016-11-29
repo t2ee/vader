@@ -16,33 +16,31 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments)).next());
     });
 };
-const vader = require('../dist');
+const dist_1 = require('../dist');
 const request = require('supertest');
 const Koa = require('koa');
-const { HEAD, Path, } = vader.decorators;
-const { Response, Router, } = vader.core;
 let TestHeadController = class TestHeadController {
     basic() {
         return __awaiter(this, void 0, void 0, function* () {
-            return new Response()
+            return new dist_1.Response()
                 .status(200)
                 .build();
         });
     }
 };
 __decorate([
-    HEAD,
-    Path('/basic'), 
+    dist_1.HEAD,
+    dist_1.Path('/basic'), 
     __metadata('design:type', Function), 
     __metadata('design:paramtypes', []), 
     __metadata('design:returntype', Promise)
 ], TestHeadController.prototype, "basic", null);
 TestHeadController = __decorate([
-    Path('/head'), 
+    dist_1.Path('/head'), 
     __metadata('design:paramtypes', [])
 ], TestHeadController);
 const app = new Koa();
-const router = new Router();
+const router = new dist_1.Router();
 router.use(TestHeadController);
 app.use(router.routes());
 let server;

@@ -1,15 +1,13 @@
-import * as vader from '../dist';
+import {
+    HEAD,
+    Path,
+    Response,
+    Router,
+} from '../dist';
 import * as chai from 'chai';
 import * as request from 'supertest';
 import * as Koa from 'koa';
-const {
-    HEAD,
-    Path,
-} = vader.decorators;
-const {
-    Response,
-    Router,
-} = vader.core;
+
 
 @Path('/head')
 class TestHeadController {
