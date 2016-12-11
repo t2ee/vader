@@ -8,7 +8,6 @@ var ParamType;
     ParamType[ParamType["Context"] = 4] = "Context";
     ParamType[ParamType["External"] = 5] = "External";
 })(ParamType || (ParamType = {}));
-var ParamType;
 (function (ParamType) {
     function toString(type) {
         switch (type) {

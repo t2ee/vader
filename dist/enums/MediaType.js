@@ -6,7 +6,6 @@ var MediaType;
     MediaType[MediaType["FORM"] = 2] = "FORM";
     MediaType[MediaType["MULTIPART"] = 3] = "MULTIPART";
 })(MediaType || (MediaType = {}));
-var MediaType;
 (function (MediaType) {
     function toString(type) {
         switch (type) {

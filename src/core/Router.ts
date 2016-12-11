@@ -88,7 +88,7 @@ class Router {
         return null;
     }
 
-    async getParameterValue(parameter: IParameter, context: VaderContext) {
+    private async getParameterValue(parameter: IParameter, context: VaderContext) {
         switch (parameter.paramType) {
             case ParamType.QueryParam:
                 if (parameter.paramKey) {
@@ -123,7 +123,7 @@ class Router {
         }
     }
 
-    async getParameter(parameter: IParameter, context: VaderContext) {
+    private async getParameter(parameter: IParameter, context: VaderContext) {
         let ret = await this.getParameterValue(parameter, context);
         if (!ret) return null;
         return ret;

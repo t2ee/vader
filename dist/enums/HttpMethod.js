@@ -8,7 +8,6 @@ var HttpMethod;
     HttpMethod[HttpMethod["HEAD"] = 4] = "HEAD";
     HttpMethod[HttpMethod["OPTIONS"] = 5] = "OPTIONS";
 })(HttpMethod || (HttpMethod = {}));
-var HttpMethod;
 (function (HttpMethod) {
     function toString(method) {
         switch (method) {

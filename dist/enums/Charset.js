@@ -3,7 +3,6 @@ var Charset;
 (function (Charset) {
     Charset[Charset["UTF8"] = 0] = "UTF8";
 })(Charset || (Charset = {}));
-var Charset;
 (function (Charset) {
     function toString(charset) {
         switch (charset) {

@@ -38,7 +38,6 @@ var Status;
     Status[Status["UNAVAILABLE"] = 503] = "UNAVAILABLE";
     Status[Status["GATEWAY_TIMEOUT"] = 504] = "GATEWAY_TIMEOUT";
 })(Status || (Status = {}));
-var Status;
 (function (Status) {
     function toString(status) {
         switch (status) {

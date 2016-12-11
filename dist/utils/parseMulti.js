@@ -1,5 +1,5 @@
 "use strict";
-require('reflect-metadata');
+require("reflect-metadata");
 const formy = require('formidable');
 function parseMulti(koaContext, opts) {
     opts = opts || {};

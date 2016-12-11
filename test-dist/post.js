@@ -14,15 +14,15 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
         function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments)).next());
     });
 };
-const dist_1 = require('../dist');
-const chai = require('chai');
-const request = require('supertest');
-const Koa = require('koa');
+const dist_1 = require("../dist");
+const chai = require("chai");
+const request = require("supertest");
+const Koa = require("koa");
 let TestPostController = class TestPostController {
     json(body, message) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -65,49 +65,49 @@ let TestPostController = class TestPostController {
     }
 };
 __decorate([
-    dist_1.BodyParam(), 
-    __metadata('design:type', Object)
+    dist_1.BodyParam(),
+    __metadata("design:type", Object)
 ], TestPostController.prototype, "body", void 0);
 __decorate([
     dist_1.POST,
     dist_1.Consume(dist_1.MediaType.JSON),
     dist_1.Path('/json'),
     __param(0, dist_1.BodyParam()),
-    __param(1, dist_1.BodyParam('message')), 
-    __metadata('design:type', Function), 
-    __metadata('design:paramtypes', [Object, Object]), 
-    __metadata('design:returntype', Promise)
+    __param(1, dist_1.BodyParam('message')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
 ], TestPostController.prototype, "json", null);
 __decorate([
     dist_1.POST,
     dist_1.Consume(dist_1.MediaType.FORM),
     dist_1.Path('/form'),
-    __param(0, dist_1.BodyParam()), 
-    __metadata('design:type', Function), 
-    __metadata('design:paramtypes', [Object]), 
-    __metadata('design:returntype', Promise)
+    __param(0, dist_1.BodyParam()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], TestPostController.prototype, "form", null);
 __decorate([
     dist_1.POST,
     dist_1.Consume(dist_1.MediaType.TEXT),
     dist_1.Path('/text'),
-    __param(0, dist_1.BodyParam()), 
-    __metadata('design:type', Function), 
-    __metadata('design:paramtypes', [Object]), 
-    __metadata('design:returntype', Promise)
+    __param(0, dist_1.BodyParam()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], TestPostController.prototype, "text", null);
 __decorate([
     dist_1.POST,
     dist_1.Consume(dist_1.MediaType.MULTIPART),
     dist_1.Path('/multi'),
-    __param(0, dist_1.BodyParam()), 
-    __metadata('design:type', Function), 
-    __metadata('design:paramtypes', [Object]), 
-    __metadata('design:returntype', Promise)
+    __param(0, dist_1.BodyParam()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], TestPostController.prototype, "multi", null);
 TestPostController = __decorate([
-    dist_1.Path('/post'), 
-    __metadata('design:paramtypes', [])
+    dist_1.Path('/post'),
+    __metadata("design:paramtypes", [])
 ], TestPostController);
 const app = new Koa();
 const router = new dist_1.Router();

@@ -2,19 +2,19 @@
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
         function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments)).next());
     });
 };
-const pathToRegexp = require('path-to-regexp');
-const _ = require('lodash');
+const pathToRegexp = require("path-to-regexp");
+const _ = require("lodash");
 const parse = require('co-body');
-const parseMulti_1 = require('../utils/parseMulti');
-const MediaType_1 = require('../enums/MediaType');
-const ParamType_1 = require('../enums/ParamType');
-const VaderContext_1 = require('../core/VaderContext');
-const Property_1 = require('../enums/Property');
+const parseMulti_1 = require("../utils/parseMulti");
+const MediaType_1 = require("../enums/MediaType");
+const ParamType_1 = require("../enums/ParamType");
+const VaderContext_1 = require("../core/VaderContext");
+const Property_1 = require("../enums/Property");
 const CLASS = Property_1.default.CLASS;
 class Router {
     constructor() {
@@ -140,15 +140,11 @@ class Router {
                 function run(next, context) {
                     return __awaiter(this, void 0, void 0, function* () {
                         for (const ware of matchedRoute.wares) {
-                            next = ((next, ware) => () => __awaiter(this, void 0, void 0, function* () {
-                                return yield ware(context, next);
-                            }))(next, ware);
+                            next = ((next, ware) => () => __awaiter(this, void 0, void 0, function* () { return yield ware(context, next); }))(next, ware);
                         }
                         const controllerClass = matchedRoute.controllerClass;
                         for (const ware of controllerClass.prototype[CLASS].WARES) {
-                            next = ((next, ware) => () => __awaiter(this, void 0, void 0, function* () {
-                                return yield ware(context, next);
-                            }))(next, ware);
+                            next = ((next, ware) => () => __awaiter(this, void 0, void 0, function* () { return yield ware(context, next); }))(next, ware);
                         }
                         yield next();
                     });

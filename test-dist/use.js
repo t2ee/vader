@@ -14,15 +14,15 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
         function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments)).next());
     });
 };
-const dist_1 = require('../dist');
-const chai = require('chai');
-const request = require('supertest');
-const Koa = require('koa');
+const dist_1 = require("../dist");
+const chai = require("chai");
+const request = require("supertest");
+const Koa = require("koa");
 let counter = 0;
 function middleware1(context, next) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -77,16 +77,16 @@ __decorate([
     dist_1.Path(''),
     dist_1.Use(middleware3),
     dist_1.Use(middleware4),
-    __param(0, dist_1.Context()), 
-    __metadata('design:type', Function), 
-    __metadata('design:paramtypes', [dist_1.VaderContext]), 
-    __metadata('design:returntype', Promise)
+    __param(0, dist_1.Context()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [dist_1.VaderContext]),
+    __metadata("design:returntype", Promise)
 ], TestController.prototype, "basic", null);
 TestController = __decorate([
     dist_1.Use(middleware1),
     dist_1.Use(middleware2),
-    dist_1.Path('/inject'), 
-    __metadata('design:paramtypes', [])
+    dist_1.Path('/inject'),
+    __metadata("design:paramtypes", [])
 ], TestController);
 const app = new Koa();
 const router = new dist_1.Router();

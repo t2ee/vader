@@ -1,6 +1,6 @@
 "use strict";
-const ControllerProperty_1 = require('../core/ControllerProperty');
-const Property_1 = require('../enums/Property');
+const ControllerProperty_1 = require("../core/ControllerProperty");
+const Property_1 = require("../enums/Property");
 const CLASS = Property_1.default.CLASS;
 function decorate(func) {
     return (target, key, index) => {

@@ -1,5 +1,5 @@
 "use strict";
-const Debugger = require('debug');
+const Debugger = require("debug");
 const cache = {};
 function default_1(name) {
     if (!cache[name]) {

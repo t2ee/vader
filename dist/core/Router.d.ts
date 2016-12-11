@@ -7,8 +7,8 @@ declare class Router {
     private _providers;
     private findMatchedRoute(koaContext);
     private getBody(route, koaContext);
-    getParameterValue(parameter: IParameter, context: VaderContext): Promise<any>;
-    getParameter(parameter: IParameter, context: VaderContext): Promise<any>;
+    private getParameterValue(parameter, context);
+    private getParameter(parameter, context);
     routes(): (koaContext: Koa.Context, next: () => Promise<any>) => Promise<void>;
     provide(name: string, fn: (parameter: IParameter, context: VaderContext) => Promise<any>): void;
     use(controllerClass: new (...args: Array<any>) => any): void;

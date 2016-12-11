@@ -11,15 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
         function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments)).next());
     });
 };
-const dist_1 = require('../dist');
-const chai = require('chai');
-const request = require('supertest');
-const Koa = require('koa');
+const dist_1 = require("../dist");
+const chai = require("chai");
+const request = require("supertest");
+const Koa = require("koa");
 function Inject(property) {
     return (target, key, index) => {
         property.PARAMS.push({
@@ -40,23 +40,23 @@ let TestProvideController = class TestProvideController {
     }
 };
 __decorate([
-    dist_1.QueryParam(), 
-    __metadata('design:type', Object)
+    dist_1.QueryParam(),
+    __metadata("design:type", Object)
 ], TestProvideController.prototype, "query", void 0);
 __decorate([
-    dist_1.decorate(Inject), 
-    __metadata('design:type', String)
+    dist_1.decorate(Inject),
+    __metadata("design:type", String)
 ], TestProvideController.prototype, "testParam", void 0);
 __decorate([
     dist_1.GET,
-    dist_1.Path('/basic'), 
-    __metadata('design:type', Function), 
-    __metadata('design:paramtypes', []), 
-    __metadata('design:returntype', Promise)
+    dist_1.Path('/basic'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
 ], TestProvideController.prototype, "basic", null);
 TestProvideController = __decorate([
-    dist_1.Path(''), 
-    __metadata('design:paramtypes', [])
+    dist_1.Path(''),
+    __metadata("design:paramtypes", [])
 ], TestProvideController);
 const app = new Koa();
 const router = new dist_1.Router();

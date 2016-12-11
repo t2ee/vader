@@ -1,6 +1,6 @@
 "use strict";
-const RouteProperty_1 = require('../core/RouteProperty');
-const createArray_1 = require('../utils/createArray');
+const RouteProperty_1 = require("../core/RouteProperty");
+const createArray_1 = require("../utils/createArray");
 class ControllerProperty {
     constructor() {
         this.WARES = [];

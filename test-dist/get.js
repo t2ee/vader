@@ -14,15 +14,15 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
         function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments)).next());
     });
 };
-const dist_1 = require('../dist');
-const chai = require('chai');
-const request = require('supertest');
-const Koa = require('koa');
+const dist_1 = require("../dist");
+const chai = require("chai");
+const request = require("supertest");
+const Koa = require("koa");
 let TestGetController = class TestGetController {
     basic() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -83,73 +83,73 @@ let TestGetController = class TestGetController {
     }
 };
 __decorate([
-    dist_1.QueryParam(), 
-    __metadata('design:type', Object)
+    dist_1.QueryParam(),
+    __metadata("design:type", Object)
 ], TestGetController.prototype, "queryParam", void 0);
 __decorate([
-    dist_1.QueryParam('echo'), 
-    __metadata('design:type', String)
+    dist_1.QueryParam('echo'),
+    __metadata("design:type", String)
 ], TestGetController.prototype, "queryEcho", void 0);
 __decorate([
-    dist_1.PathParam(), 
-    __metadata('design:type', Object)
+    dist_1.PathParam(),
+    __metadata("design:type", Object)
 ], TestGetController.prototype, "pathParam", void 0);
 __decorate([
-    dist_1.PathParam('echo'), 
-    __metadata('design:type', String)
+    dist_1.PathParam('echo'),
+    __metadata("design:type", String)
 ], TestGetController.prototype, "pathEcho", void 0);
 __decorate([
-    dist_1.HeaderParam(), 
-    __metadata('design:type', Object)
+    dist_1.HeaderParam(),
+    __metadata("design:type", Object)
 ], TestGetController.prototype, "headerParam", void 0);
 __decorate([
-    dist_1.HeaderParam('echo'), 
-    __metadata('design:type', String)
+    dist_1.HeaderParam('echo'),
+    __metadata("design:type", String)
 ], TestGetController.prototype, "headerEcho", void 0);
 __decorate([
     dist_1.GET,
-    dist_1.Path('/basic'), 
-    __metadata('design:type', Function), 
-    __metadata('design:paramtypes', []), 
-    __metadata('design:returntype', Promise)
+    dist_1.Path('/basic'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
 ], TestGetController.prototype, "basic", null);
 __decorate([
     dist_1.GET,
     dist_1.Path('/query'),
     __param(0, dist_1.QueryParam()),
-    __param(1, dist_1.QueryParam('echo')), 
-    __metadata('design:type', Function), 
-    __metadata('design:paramtypes', [Object, Object]), 
-    __metadata('design:returntype', Promise)
+    __param(1, dist_1.QueryParam('echo')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
 ], TestGetController.prototype, "query", null);
 __decorate([
     dist_1.GET,
     dist_1.Path('/path/:echo'),
     __param(0, dist_1.PathParam()),
-    __param(1, dist_1.PathParam('echo')), 
-    __metadata('design:type', Function), 
-    __metadata('design:paramtypes', [Object, Object]), 
-    __metadata('design:returntype', Promise)
+    __param(1, dist_1.PathParam('echo')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
 ], TestGetController.prototype, "path", null);
 __decorate([
     dist_1.GET,
     dist_1.Path('/header'),
     __param(0, dist_1.HeaderParam()),
-    __param(1, dist_1.HeaderParam('echo')), 
-    __metadata('design:type', Function), 
-    __metadata('design:paramtypes', [Object, Object]), 
-    __metadata('design:returntype', Promise)
+    __param(1, dist_1.HeaderParam('echo')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
 ], TestGetController.prototype, "header", null);
 __decorate([
     dist_1.GET,
-    dist_1.Path('/json'), 
-    __metadata('design:type', Function), 
-    __metadata('design:paramtypes', []), 
-    __metadata('design:returntype', Promise)
+    dist_1.Path('/json'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
 ], TestGetController.prototype, "json", null);
 TestGetController = __decorate([
-    dist_1.Path('/get'), 
-    __metadata('design:paramtypes', [])
+    dist_1.Path('/get'),
+    __metadata("design:paramtypes", [])
 ], TestGetController);
 const app = new Koa();
 const router = new dist_1.Router();

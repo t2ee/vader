@@ -17,8 +17,107 @@ More documentations will be added soon, for immediate access to all features, pl
 ## Example
 
 ```typescript
+@Path('/')
+class TestController {
 
+    @GET
+    @Path('/')
+    async index() {
+        return new Response()
+            .status(200)
+            .set('Content-Type', 'application/json')
+            .entity(JSON.stringify({
+                message: 'hello world',
+            }))
+            .build();
+    }
+}
+const app = new Koa();
+const router = new Router();
+router.use(TestController);
+app.use(router.routes());
+app.listen(8080);
 ```
+
+##API
+### Router
+#### provide(providerName: string, fn: (parameter: IParameter, context: VaderContext) => Promise);
+> provide custom annotations that can be managed by vader.
+
+#### use(controller: Class)
+> register a controller to router
+
+#### routes()
+> return a middleware function to be used in Koa.
+
+### Response
+#### entity(body: any)
+> set content
+
+#### status(status: number)
+> set status
+
+#### set(key: string, value: string)
+> set header
+
+#### build()
+> build response before return
+
+### VaderContext
+* headers
+* params
+* query
+* body
+* http: Koa.Context
+* [key: string]: any // used to store any intermediate state.
+
+### @BodyParam(key?: string)
+> used to get body of item of specified key
+
+### @HeaderParam(key?: string)
+> used to get header of item of specified key
+
+### @PathParam(key?: string)
+> used to get path variables of item of specified key
+
+### @QueryParam(key?: string)
+> used to get query of item of specified key
+
+### @Consume(type: MediaType)
+> set reqeust body content type
+
+### @Produce(type: MediaType)
+> set response body content type
+
+### @DELETE
+### @GET
+### @POST
+### @PUT
+### @HEAD
+### @OPTIONS
+### @Method(method:  string)
+> set reqeust method
+
+### @Context
+> get current VaderContext
+
+### @Use(func:  (context: VaderContext, next: () => Promise<void>) => Promise<void>)
+> plug in custom middleware
+
+### Charset
+> charset enums
+
+### HttpMethod
+> http method enums
+
+### MediaType
+> content type enums
+
+### Status
+> http status enums
+
+
+
 
 ## Contributing
 
