@@ -2,20 +2,24 @@ import RouteProperty from  '../core/RouteProperty';
 import IMiddleware from  '../core/IMiddleware';
 import Debugger from '../utils/debug';
 import ControllerProperty from '../core/ControllerProperty';
-import Property from '../enums/Property';
-const CLASS = Property.CLASS;
 const debug = Debugger('vader:decorator');
+import 'reflect-metadata';
+
 
 export default function Use(func: IMiddleware) {
     return (target, key?: string) => {
         if (key) {
+            const property: ControllerProperty =
+                Reflect.getMetadata('vader:controller:property', target) || new ControllerProperty();
             debug(`Mounting @Use(${func}) on method '${key}'`);
-            target[CLASS] = target[CLASS] || new ControllerProperty();
-            target[CLASS].ROUTES[key].WARES.push(func);
+            property.ROUTES[key].WARES.push(func);
+            Reflect.defineMetadata('vader:controller:property', property, target);
         } else {
             debug(`Mounting @Use(${func})`);
-            target.prototype[CLASS] = target.prototype[CLASS] || new ControllerProperty();
-            target.prototype[CLASS].WARES.push(func);
+            const property: ControllerProperty =
+                Reflect.getMetadata('vader:controller:property', target.prototype) || new ControllerProperty();
+            property.WARES.push(func);
+            Reflect.defineMetadata('vader:controller:property', property, target.prototype);
         }
     }
 }

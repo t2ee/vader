@@ -2,14 +2,14 @@
 const MediaType_1 = require("../enums/MediaType");
 const debug_1 = require("../utils/debug");
 const ControllerProperty_1 = require("../core/ControllerProperty");
-const Property_1 = require("../enums/Property");
-const CLASS = Property_1.default.CLASS;
+require("reflect-metadata");
 const debug = debug_1.default('vader:decorator');
 function Consume(type) {
     return (target, key) => {
+        const property = Reflect.getMetadata('vader:controller:property', target) || new ControllerProperty_1.default();
         debug(`Mounting @Consume(${MediaType_1.default.toString(type)})`);
-        target[CLASS] = target[CLASS] || new ControllerProperty_1.default();
-        target[CLASS].ROUTES[key].CONSUME = type;
+        property.ROUTES[key].CONSUME = type;
+        Reflect.defineMetadata('vader:controller:property', property, target);
     };
 }
 Object.defineProperty(exports, "__esModule", { value: true });

@@ -6,7 +6,6 @@ import {
     Router,
     ControllerProperty,
     decorate,
-    Property,
 } from '../dist';
 import * as chai from 'chai';
 import * as request from 'supertest';

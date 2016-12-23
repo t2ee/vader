@@ -1,5 +1,4 @@
 import * as Koa from 'koa';
-import 'reflect-metadata';
 const formy: any = require('formidable');
 
 export default function parseMulti(koaContext: Koa.Context, opts?: any):Promise<any> {

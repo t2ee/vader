@@ -27,7 +27,6 @@ export { default as Charset} from './enums/Charset';
 export { default as HttpMethod} from './enums/HttpMethod';
 export { default as MediaType} from './enums/MediaType';
 export { default as ParamType} from './enums/ParamType';
-export { default as Property} from './enums/Property';
 export { default as Status} from './enums/Status';
 export { default as createArray} from './utils/createArray';
 export { default as debug} from './utils/debug';

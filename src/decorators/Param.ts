@@ -1,19 +1,19 @@
 import RouteProperty from  '../core/RouteProperty';
 import ParamType from  '../enums/ParamType';
 import Debugger from '../utils/debug';
-import 'reflect-metadata';
 import ControllerProperty from '../core/ControllerProperty';
-import Property from '../enums/Property';
-const CLASS = Property.CLASS;
 const debug = Debugger('vader:decorator');
+import 'reflect-metadata';
+
 
 export default function Param(paramType: ParamType, paramKey?: string) {
     return (target, key?: string, index?: number) => {
+        const property: ControllerProperty =
+            Reflect.getMetadata('vader:controller:property', target) || new ControllerProperty();
         if (index !== undefined) {
             debug(`Mounting @${ParamType.toString(paramType)}('${paramKey || ''}') on method '${key}', ${index}th parameter`);
             let type = Reflect.getMetadata('design:paramtypes', target, key)[index];
-            target[CLASS] = target[CLASS] || new ControllerProperty();
-            target[CLASS].ROUTES[key].PARAMS[index] = {
+            property.ROUTES[key].PARAMS[index] = {
                 type,
                 paramKey,
                 paramType,
@@ -22,13 +22,13 @@ export default function Param(paramType: ParamType, paramKey?: string) {
         } else {
             debug(`Mounting @${ParamType.toString(paramType)}('${paramKey || ''}') on ${key}`);
             let type = Reflect.getMetadata('design:type', target, key);
-            target[CLASS] = target[CLASS] || new ControllerProperty();
-            target[CLASS].PARAMS.push({
+            property.PARAMS.push({
                 type,
                 paramKey,
                 paramType,
                 key,
             });
         }
+        Reflect.defineMetadata('vader:controller:property', property, target);
     };
 }

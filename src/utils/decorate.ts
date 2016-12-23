@@ -1,20 +1,21 @@
 import ControllerProperty from '../core/ControllerProperty';
-import Property from '../enums/Property';
-const CLASS = Property.CLASS;
+import 'reflect-metadata';
+
 
 export default function decorate(func: (property: ControllerProperty) => (target, key?: string, index?: number) => void) {
     return (target, key?: string, index?: number) => {
-        let property;
+        let property: ControllerProperty;
         if (key) {
-            property = target[CLASS] || new ControllerProperty();
+            property = Reflect.getMetadata('vader:controller:property', target);
         } else {
-            property = target.prototype[CLASS] || new ControllerProperty();
+            property =  Reflect.getMetadata('vader:controller:property', target.prototype);
         }
+        property = property || new ControllerProperty();
         const ret = func(property)(target, key, index);
         if (key) {
-            target[CLASS] = property;
+            Reflect.defineMetadata('vader:controller:property', property, target);
         } else {
-            target.prototype[CLASS] = property;
+            Reflect.defineMetadata('vader:controller:property', property, target.prototype);
         }
         return ret;
     }

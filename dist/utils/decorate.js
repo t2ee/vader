@@ -1,22 +1,22 @@
 "use strict";
 const ControllerProperty_1 = require("../core/ControllerProperty");
-const Property_1 = require("../enums/Property");
-const CLASS = Property_1.default.CLASS;
+require("reflect-metadata");
 function decorate(func) {
     return (target, key, index) => {
         let property;
         if (key) {
-            property = target[CLASS] || new ControllerProperty_1.default();
+            property = Reflect.getMetadata('vader:controller:property', target);
         }
         else {
-            property = target.prototype[CLASS] || new ControllerProperty_1.default();
+            property = Reflect.getMetadata('vader:controller:property', target.prototype);
         }
+        property = property || new ControllerProperty_1.default();
         const ret = func(property)(target, key, index);
         if (key) {
-            target[CLASS] = property;
+            Reflect.defineMetadata('vader:controller:property', property, target);
         }
         else {
-            target.prototype[CLASS] = property;
+            Reflect.defineMetadata('vader:controller:property', property, target.prototype);
         }
         return ret;
     };
