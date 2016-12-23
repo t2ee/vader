@@ -23,6 +23,7 @@ const dist_1 = require("../dist");
 const chai = require("chai");
 const request = require("supertest");
 const Koa = require("koa");
+require("reflect-metadata");
 let TestGetController = class TestGetController {
     basic() {
         return __awaiter(this, void 0, void 0, function* () {

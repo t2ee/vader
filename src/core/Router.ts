@@ -12,8 +12,7 @@ import IMiddleware from  '../core/IMiddleware';
 import VaderContext from  '../core/VaderContext';
 import Response from  '../core/Response';
 import ControllerProperty from '../core/ControllerProperty';
-import 'reflect-metadata';
-
+import * as Metadata from '../utils/Metadata';
 
 interface Route {
     controllerClass: new () => any;
@@ -153,7 +152,7 @@ class Router {
                             await ware(context, next))(next, ware);
                     }
                     const controllerClass = matchedRoute.controllerClass;
-                    const property = Reflect.getMetadata('vader:controller:property', controllerClass.prototype);
+                    const property = Metadata.get('vader:controller:property', controllerClass.prototype);
                     for (const ware of property.WARES) {
                         next = ((next, ware) => async () =>
                             await ware(context, next))(next, ware);
@@ -165,7 +164,7 @@ class Router {
                     return async () => {
                         let parameters = [];
                         const controllerClass = matchedRoute.controllerClass;
-                        const property = Reflect.getMetadata('vader:controller:property', controllerClass.prototype);
+                        const property = Metadata.get('vader:controller:property', controllerClass.prototype);
                         for (const param of matchedRoute.params) {
                             parameters.push(await self.getParameter(param, context));
                         }
@@ -192,7 +191,7 @@ class Router {
 
     use(controllerClass: new (...args: Array<any>) => any) {
         const controller = controllerClass.prototype;
-        const property = Reflect.getMetadata('vader:controller:property', controller);
+        const property = Metadata.get('vader:controller:property', controller);
         for (const key in property.ROUTES) {
             const pathRegex = [];
             const pathKeys = [];

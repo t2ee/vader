@@ -10,6 +10,7 @@ import {
 import * as chai from 'chai';
 import * as request from 'supertest';
 import * as Koa from 'koa';
+import 'reflect-metadata';
 
 function Inject(property) {
     return (target, key?: string, index?: number) => {

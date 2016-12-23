@@ -19,6 +19,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const dist_1 = require("../dist");
 const request = require("supertest");
 const Koa = require("koa");
+require("reflect-metadata");
 let TestPutController = class TestPutController {
     basic() {
         return __awaiter(this, void 0, void 0, function* () {

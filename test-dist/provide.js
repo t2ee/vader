@@ -20,6 +20,7 @@ const dist_1 = require("../dist");
 const chai = require("chai");
 const request = require("supertest");
 const Koa = require("koa");
+require("reflect-metadata");
 function Inject(property) {
     return (target, key, index) => {
         property.PARAMS.push({

@@ -2,7 +2,6 @@
 import * as Koa from 'koa';
 import IParameter from '../core/IParameter';
 import VaderContext from '../core/VaderContext';
-import 'reflect-metadata';
 declare class Router {
     private _routes;
     private _providers;

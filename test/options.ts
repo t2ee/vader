@@ -7,6 +7,7 @@ import {
 import * as chai from 'chai';
 import * as request from 'supertest';
 import * as Koa from 'koa';
+import 'reflect-metadata';
 
 
 @Path('/options')

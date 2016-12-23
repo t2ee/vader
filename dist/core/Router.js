@@ -14,7 +14,7 @@ const parseMulti_1 = require("../utils/parseMulti");
 const MediaType_1 = require("../enums/MediaType");
 const ParamType_1 = require("../enums/ParamType");
 const VaderContext_1 = require("../core/VaderContext");
-require("reflect-metadata");
+const Metadata = require("../utils/Metadata");
 class Router {
     constructor() {
         this._routes = [];
@@ -142,7 +142,7 @@ class Router {
                             next = ((next, ware) => () => __awaiter(this, void 0, void 0, function* () { return yield ware(context, next); }))(next, ware);
                         }
                         const controllerClass = matchedRoute.controllerClass;
-                        const property = Reflect.getMetadata('vader:controller:property', controllerClass.prototype);
+                        const property = Metadata.get('vader:controller:property', controllerClass.prototype);
                         for (const ware of property.WARES) {
                             next = ((next, ware) => () => __awaiter(this, void 0, void 0, function* () { return yield ware(context, next); }))(next, ware);
                         }
@@ -153,7 +153,7 @@ class Router {
                     return () => __awaiter(this, void 0, void 0, function* () {
                         let parameters = [];
                         const controllerClass = matchedRoute.controllerClass;
-                        const property = Reflect.getMetadata('vader:controller:property', controllerClass.prototype);
+                        const property = Metadata.get('vader:controller:property', controllerClass.prototype);
                         for (const param of matchedRoute.params) {
                             parameters.push(yield self.getParameter(param, context));
                         }
@@ -174,7 +174,7 @@ class Router {
     }
     use(controllerClass) {
         const controller = controllerClass.prototype;
-        const property = Reflect.getMetadata('vader:controller:property', controller);
+        const property = Metadata.get('vader:controller:property', controller);
         for (const key in property.ROUTES) {
             const pathRegex = [];
             const pathKeys = [];
