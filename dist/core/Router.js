@@ -123,6 +123,9 @@ class Router {
             return ret;
         });
     }
+    setErrorHandler(handler) {
+        this._errorHandler = handler;
+    }
     routes() {
         return (koaContext, next) => __awaiter(this, void 0, void 0, function* () {
             const self = this;
@@ -134,7 +137,19 @@ class Router {
                 context.query = koaContext.query;
                 context.body = yield this.getBody(matchedRoute, koaContext);
                 context.http = koaContext;
-                yield run(_next(context), context);
+                try {
+                    yield run(_next(context), context);
+                }
+                catch (e) {
+                    if (this._errorHandler) {
+                        (yield this._errorHandler(e)).send(koaContext);
+                    }
+                    else {
+                        console.error(e.stack || e);
+                        koaContext.body = 'Internal Server Error';
+                        koaContext.status = 500;
+                    }
+                }
                 yield next();
                 function run(next, context) {
                     return __awaiter(this, void 0, void 0, function* () {

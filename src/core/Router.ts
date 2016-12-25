@@ -30,6 +30,7 @@ interface Route {
 class Router {
     private _routes: Array<Route> = [];
     private _providers: { [key: string]: (parameter: IParameter, context: VaderContext) => Promise<any> } = {};
+    private _errorHandler: (e) => Promise<Response>;
 
     private findMatchedRoute(koaContext: Koa.Context) {
         let matchedRoute;
@@ -126,6 +127,10 @@ class Router {
         return ret;
     }
 
+    setErrorHandler(handler: (e) => Promise<Response>) {
+        this._errorHandler = handler;
+    }
+
     routes() {
         return async (koaContext: Koa.Context, next: () => Promise<any>):Promise<void> => {
             const self = this;
@@ -142,7 +147,18 @@ class Router {
                 context.body =  await this.getBody(matchedRoute, koaContext);
                 context.http = koaContext;
 
-                await run(_next(context), context);
+                try {
+                    await run(_next(context), context);
+                } catch (e) {
+                    if (this._errorHandler) {
+                        (await this._errorHandler(e)).send(koaContext);
+                    } else {
+                        console.error(e.stack || e);
+                        koaContext.body = 'Internal Server Error';
+                        koaContext.status = 500;
+                    }
+                }
+
                 await next();
 
 
