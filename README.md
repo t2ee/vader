@@ -26,7 +26,7 @@ import 'reflect-metadata';
 class TestController {
 
     @GET
-    @Produce(MediaTYpe.JSON)
+    @Produce(MediaType.JSON)
     @Path('/')
     async index() {
         return new Response()
