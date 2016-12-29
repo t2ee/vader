@@ -26,14 +26,14 @@ import 'reflect-metadata';
 class TestController {
 
     @GET
+    @Produce(MediaTYpe.JSON)
     @Path('/')
     async index() {
         return new Response()
             .status(200)
-            .set('Content-Type', 'application/json')
-            .entity(JSON.stringify({
+            .entity({
                 message: 'hello world',
-            }))
+            })
             .build();
     }
 }
