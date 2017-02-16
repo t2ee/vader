@@ -2,6 +2,6 @@ language: node_js
 node_js:
     - 6
 sudo: false
-before_script: npm i istanbul mocha typescript@next -g
+before_script: npm i istanbul mocha typescript@2.1.6 -g
 script: npm install; npm test
 after_script: npm run coverage && npm install coveralls@2 && cat ./coverage/lcov.info | coveralls
