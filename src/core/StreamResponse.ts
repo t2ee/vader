@@ -33,7 +33,7 @@ class StreamResponseBuilder extends ResponseBuilder {
     public build(): StreamResponse {
         if (!this._stream) {
             this._stream = new Readable();
-            this._stream._read = () => {};
+            //this._stream._read = () => {};
         }
         return new StreamResponse()
             .setHeaders(this._headers)
