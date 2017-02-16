@@ -1,6 +1,6 @@
 {
   "name": "@t2ee/vader",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "t2ee core component, router framework used on top of koa",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -11,7 +11,8 @@
     "mocha": "mocha test-dist/*.js --require source-map-support/register",
     "coverage": "npm run test-typescript && npm run istanbul",
     "istanbul": "istanbul cover _mocha test-dist/*.js",
-    "typescript": "tsc -p tsconfig.json"
+    "typescript": "tsc -p tsconfig.json",
+	"prepublish": "npm test && npm run build"
   },
   "dependencies": {
     "@types/chai": "^3.4.29",

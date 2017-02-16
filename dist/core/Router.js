@@ -203,7 +203,7 @@ class Router {
             this._routes.push({
                 controllerClass,
                 method: route.METHOD,
-                path: route.PATHS.map(p => property.PATH + p),
+                path: route.PATHS.map((p) => property.PATH + p),
                 consume: route.CONSUME,
                 produce: route.PRODUCE,
                 route: key,

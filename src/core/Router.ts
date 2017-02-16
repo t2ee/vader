@@ -30,11 +30,11 @@ interface Route {
 class Router {
     private _routes: Array<Route> = [];
     private _providers: { [key: string]: (parameter: IParameter, context: VaderContext) => Promise<any> } = {};
-    private _errorHandler: (e) => Promise<Response>;
+    private _errorHandler: (e: any) => Promise<Response>;
 
     private findMatchedRoute(koaContext: Koa.Context) {
         let matchedRoute;
-        let params = {};
+        let params: any = {};
         for (let route of this._routes) {
             if (route.method.toUpperCase() === koaContext.method.toUpperCase()) {
                 for (let i = 0; i < route.pathRegex.length; i++) {
@@ -77,7 +77,7 @@ class Router {
         } else if (route.consume === MediaType.MULTIPART &&
             contentType.indexOf(MediaType.toString(MediaType.MULTIPART)) !== -1) {
             let result = await parseMulti(koaContext);
-            let body = {};
+            let body: any = {};
             for (let key in result.fields) {
                 body[key] = result.fields[key];
             }
@@ -127,7 +127,7 @@ class Router {
         return ret;
     }
 
-    setErrorHandler(handler: (e) => Promise<Response>) {
+    setErrorHandler(handler: (e: any) => Promise<Response>) {
         this._errorHandler = handler;
     }
 
@@ -162,7 +162,7 @@ class Router {
                 await next();
 
 
-                async function run(next, context) {
+                async function run(next: () => Promise<void>, context: VaderContext) {
                     for (const ware of matchedRoute.wares) {
                         next = ((next, ware) => async () =>
                             await ware(context, next))(next, ware);
@@ -176,7 +176,7 @@ class Router {
                     await next();
                 }
 
-                function _next(context) {
+                function _next(context: VaderContext) {
                     return async () => {
                         let parameters = [];
                         const controllerClass = matchedRoute.controllerClass;
@@ -222,7 +222,7 @@ class Router {
             this._routes.push({
                 controllerClass,
                 method: route.METHOD,
-                path: route.PATHS.map(p => property.PATH + p),
+                path: route.PATHS.map((p: string) => property.PATH + p),
                 consume: route.CONSUME,
                 produce: route.PRODUCE,
                 route: key,

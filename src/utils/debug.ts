@@ -1,8 +1,8 @@
 import * as Debugger from 'debug';
 
-const cache = {};
+const cache: any = {};
 
-export default function(name) {
+export default function(name: string) {
     if (!cache[name]) {
         cache[name] = Debugger(name);
     }

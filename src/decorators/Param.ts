@@ -6,13 +6,13 @@ const debug = Debugger('vader:decorator');
 import * as Metadata from '../utils/Metadata';
 
 export default function Param(paramType: ParamType, paramKey?: string) {
-    return (target, key?: string, index?: number) => {
+    return (target: any, key?: string, index?: number) => {
         const property: ControllerProperty =
                 Metadata.get('vader:controller:property', target)|| new ControllerProperty();
         if (index !== undefined) {
             debug(`Mounting @${ParamType.toString(paramType)}('${paramKey || ''}') on method '${key}', ${index}th parameter`);
             let type = (Reflect as any).getMetadata('design:paramtypes', target, key)[index];
-            property.ROUTES[key].PARAMS[index] = {
+            property.ROUTES[key as any].PARAMS[index] = {
                 type,
                 paramKey,
                 paramType,

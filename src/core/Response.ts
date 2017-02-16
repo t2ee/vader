@@ -11,7 +11,7 @@ class ResponseBuilder {
         this._body = body;
     }
 
-    public entity(body): ResponseBuilder {
+    public entity(body: any): ResponseBuilder {
         return new ResponseBuilder(this._status, this._headers, body);
     }
 
@@ -41,7 +41,7 @@ export default class Response extends ResponseBuilder {
         this._headers = headers;
         return this;
     }
-    public setBody(body): Response {
+    public setBody(body: any): Response {
         this._body = body;
         return this;
     }

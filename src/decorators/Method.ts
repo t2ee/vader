@@ -5,11 +5,11 @@ const debug = Debugger('vader:decorator');
 import * as Metadata from '../utils/Metadata';
 
 export default function Method(method: string) {
-    return (target, key: string) => {
+    return (target: any, key: string) => {
         debug(`Mounting @Method(${method})`);
         const property: ControllerProperty =
             Metadata.get('vader:controller:property', target) || new ControllerProperty();
-        property.ROUTES[key].METHOD = method;
+        property.ROUTES[key as any].METHOD = method;
         Metadata.set('vader:controller:property', property, target);
     }
 }

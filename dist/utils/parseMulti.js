@@ -1,14 +1,13 @@
 "use strict";
 const formy = require('formidable');
-function parseMulti(koaContext, opts) {
-    opts = opts || {};
+function parseMulti(koaContext, opts = {}) {
     return new Promise((resolve, reject) => {
-        var fields = {};
-        var files = {};
-        var form = new formy.IncomingForm(opts);
+        const fields = {};
+        const files = {};
+        const form = new formy.IncomingForm(opts);
         form
             .on('end', () => resolve({ fields: fields, files: files }))
-            .on('error', err => reject(err))
+            .on('error', (err) => reject(err))
             .on('field', (field, value) => {
             if (fields[field]) {
                 if (Array.isArray(fields[field])) {

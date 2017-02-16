@@ -25,7 +25,6 @@ class MyError extends Error {
 let TestErrorController = class TestErrorController {
     caught() {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log('------------enter');
             throw new MyError('test');
         });
     }

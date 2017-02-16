@@ -6,11 +6,11 @@ import * as Metadata from '../utils/Metadata';
 const debug = Debugger('vader:decorator');
 
 export default function Consume(type: MediaType) {
-    return (target, key: string) => {
+    return (target: any, key: string) => {
         const property: ControllerProperty =
                 Metadata.get('vader:controller:property', target)|| new ControllerProperty();
         debug(`Mounting @Consume(${MediaType.toString(type)})`);
-        property.ROUTES[key].CONSUME = type;
+        property.ROUTES[key as any].CONSUME = type;
         Metadata.set('vader:controller:property', property, target);
     }
 }

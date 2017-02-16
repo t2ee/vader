@@ -1,16 +1,15 @@
 import * as Koa from 'koa';
 const formy: any = require('formidable');
 
-export default function parseMulti(koaContext: Koa.Context, opts?: any):Promise<any> {
-    opts = opts || {};
+export default function parseMulti(koaContext: Koa.Context, opts: any = {}):Promise<any> {
     return new Promise<any>((resolve, reject) => {
-        var fields = {};
-        var files = {};
-        var form = new formy.IncomingForm(opts);
+        const fields: any = {};
+        const files: any = {};
+        const form = new formy.IncomingForm(opts);
         form
             .on('end', () => resolve({fields: fields, files: files}))
-            .on('error', err => reject(err))
-            .on('field', (field, value) => {
+            .on('error', (err: Error) => reject(err))
+            .on('field', (field: any, value: any) => {
                 if (fields[field]) {
                     if (Array.isArray(fields[field])) {
                         fields[field].push(value);
@@ -21,7 +20,7 @@ export default function parseMulti(koaContext: Koa.Context, opts?: any):Promise<
                     fields[field] = value;
                 }
             })
-            .on('file', (field, file) => {
+            .on('file', (field: any, file: any) => {
                 if (files[field]) {
                     if (Array.isArray(files[field])) {
                         files[field].push(file);

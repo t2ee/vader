@@ -11,7 +11,7 @@ declare class Router {
     private getBody(route, koaContext);
     private getParameterValue(parameter, context);
     private getParameter(parameter, context);
-    setErrorHandler(handler: (e) => Promise<Response>): void;
+    setErrorHandler(handler: (e: any) => Promise<Response>): void;
     routes(): (koaContext: Koa.Context, next: () => Promise<any>) => Promise<void>;
     provide(name: string, fn: (parameter: IParameter, context: VaderContext) => Promise<any>): void;
     use(controllerClass: new (...args: Array<any>) => any): void;
