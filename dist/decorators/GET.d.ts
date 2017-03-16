@@ -1,2 +1,3 @@
-declare const GET: (target: any, key: string) => void;
+declare function GET(target: any): void;
+declare function GET(target: any, method: string, descriptor: TypedPropertyDescriptor<any>): void;
 export default GET;

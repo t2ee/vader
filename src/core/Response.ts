@@ -1,60 +1,30 @@
-import * as Koa from 'koa';
 
-class ResponseBuilder {
-    protected _status: number = 200;
-    protected _headers: {[key: string] : string} = {};
-    protected _body: any = '';
+export default class Response {
+    private _body: any = 'Not Found';
+    private _status: number = 404;
+    private _headers = new Map<string, string>();
 
-    constructor(status: number, headers: {[key: string] : string}, body: any) {
-        this._status = status;
-        this._headers = headers;
+    public get body(): any {
+        return this._body;
+    }
+
+    public get status(): number {
+        return this._status; 
+    }
+
+    public get headers(): Map<string, string> {
+        return this._headers;
+    }
+
+    public set body(body: any) {
         this._body = body;
     }
 
-    public entity(body: any): ResponseBuilder {
-        return new ResponseBuilder(this._status, this._headers, body);
-    }
-
-    public status(status: number): ResponseBuilder {
-        return new ResponseBuilder(status, this._headers, this._body);
-    }
-
-    public set(key: string, value: string): ResponseBuilder {
-        const headers = this._headers;
-        headers[key] = value;
-        return new ResponseBuilder(this._status, headers, this._body);
-    }
-
-    public build(): Response {
-        return new Response()
-            .setHeaders(this._headers)
-            .setBody(this._body)
-            .setStatus(this._status);
-    }
-}
-export { ResponseBuilder };
-export default class Response extends ResponseBuilder {
-    constructor() {
-        super(404, {}, '');
-    }
-    public setHeaders(headers: {[key: string] : string}): Response {
-        this._headers = headers;
-        return this;
-    }
-    public setBody(body: any): Response {
-        this._body = body;
-        return this;
-    }
-    public setStatus(status: number): Response {
+    public set status(status: number) {
         this._status = status;
-        return this;
     }
-    public send(koaContext: Koa.Context) {
-        koaContext.body = this._body;
-        for (const key in this._headers) {
-            koaContext.set(key, this._headers[key]);
-        }
-        koaContext.status = this._status;
 
+    public set headers(headers: Map<string, string>) {
+        this._headers = headers;
     }
 }

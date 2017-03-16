@@ -1,2 +1,10 @@
-export declare function get(key: string, target: any): any;
-export declare function set(key: string, value: any, target: any): void;
+declare namespace Metadata {
+    function set(metaKey: string, metaValue: any, target: any, key?: string | symbol): any;
+    function get(metaKey: string, target: any, key?: string | symbol): any;
+    const builtIn: {
+        TYPE: string;
+        PARAM_TYPE: string;
+        RETURN_TYPE: string;
+    };
+}
+export default Metadata;

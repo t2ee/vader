@@ -1,6 +1,14 @@
-export function get(key: string, target: any) {
-    return (Reflect as any).getMetadata(key, target.prototype || target);
+namespace Metadata {
+    export function set(metaKey: string, metaValue: any, target: any, key?: string | symbol)  {
+        return (Reflect as any).defineMetadata(metaKey, metaValue, target, key);
+    }
+    export function get(metaKey: string, target: any, key?: string | symbol)  {
+        return (Reflect as any).getMetadata(metaKey, target, key);
+    }
+    export const builtIn = {
+        TYPE: 'design:type',
+        PARAM_TYPE: 'design:paramtypes',
+        RETURN_TYPE: 'design:returntype',
+    };
 }
-export function set(key: string, value: any, target: any) {
-    (Reflect as any).defineMetadata(key, value, target.prototype || target);
-}
+export default Metadata; 

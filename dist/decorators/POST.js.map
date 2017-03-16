@@ -1,1 +1,1 @@
-{"version":3,"file":"POST.js","sourceRoot":"","sources":["../../src/decorators/POST.ts"],"names":[],"mappings":";AAAA,oDAA8C;AAC9C,iDAA2C;AAE3C,MAAM,IAAI,GAAG,gBAAM,CAAC,oBAAU,CAAC,QAAQ,CAAC,oBAAU,CAAC,IAAI,CAAC,CAAC,CAAC;;AAE1D,kBAAe,IAAI,CAAC"}
+{"version":3,"file":"POST.js","sourceRoot":"","sources":["../../src/decorators/POST.ts"],"names":[],"mappings":";AAAA,oDAA6C;AAC7C,sDAA+C;AAK/C,cAAc,MAAW,EAAE,MAAe,EAAE,UAAyC;IACjF,gBAAM,CAAC,oBAAU,CAAC,IAAI,CAAC,CAAC,MAAM,EAAE,MAAM,EAAE,UAAU,CAAC,CAAC;AACxD,CAAC;;AAED,kBAAe,IAAI,CAAC"}

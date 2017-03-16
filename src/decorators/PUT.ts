@@ -1,6 +1,11 @@
-import HttpMethod from  '../enums/HttpMethod';
-import Method from  '../decorators/Method';
+import HttpMethod from '../enums/HttpMethod';
+import Method from '../core/decorators/Method';
 
-const PUT = Method(HttpMethod.toString(HttpMethod.PUT));
+
+function PUT(target: any): void
+function PUT(target: any, method: string, descriptor: TypedPropertyDescriptor<any>): void
+function PUT(target: any, method?: string, descriptor?: TypedPropertyDescriptor<any>): void {
+    Method(HttpMethod.PUT)(target, method, descriptor);
+}
 
 export default PUT;
