@@ -1,19 +1,19 @@
 import {
-    utils,
+    Metadata,
 } from '@t2ee/core';
-const { Metadata } = utils;
-import HttpMethod from '../../enums/HttpMethod';
 
-function Path(path: String) {
-    return (target: any, key?: string): void => {
+function Path(path: string): (target: any, key?: string) => any {
+    return (target: any, key?: string): any => {
         if (key) { // is a method;
-            const paths = Metadata.get('vader:route:path', target) || {};
+            const paths: {[key: string]: string} = Metadata.get('vader:route:path', target) || {};
             paths[key] = path;
             Metadata.set('vader:route:path', paths, target);
         } else { // is on class
             Metadata.set('vader:controller:path', path, target);
         }
-    }
+
+        return target;
+    };
 }
 
 export default Path;

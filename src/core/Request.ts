@@ -3,17 +3,19 @@ import HttpMethod from '../enums/HttpMethod';
 
 class Request {
     private _path: string = '';
+    private _url: string = '';
     private _method: HttpMethod = null;
-    private _query = new Map<string, string>();
-    private _params = new Map<string, string>();
+    private _query: Map<string, string> = new Map<string, string>();
+    private _params: Map<string, string> = new Map<string, string>();
     private _body: any;
-    private _headers = new Map<string, string>();
-    private _version = '1.0';
+    private _headers: Map<string, string> = new Map<string, string>();
+    private _version: string = '1.0';
     private _context: Koa.Context;
-    private _extra = new Map<string, string>();
+    private _extra: Map<string, any> = new Map<string, any>();
 
-    constructor(context: Koa.Context, params: Map<string, string>) {
+    public constructor(context: Koa.Context, params: Map<string, string>) {
         this._path = context.request.path;
+        this._url = context.request.url;
         this._params = params;
         for (const key in context.request.headers) {
             this._headers.set(key, context.request.headers[key]);
@@ -22,7 +24,11 @@ class Request {
             this._query.set(key, context.request.query[key]);
         }
         this._version = context.request.protocol;
-        this._method = HttpMethod[context.method.toUpperCase() as any] as any
+        this._method = HttpMethod[context.method.toUpperCase() as any] as any;
+    }
+
+    public get url(): string {
+        return this._url;
     }
 
     public get path(): string {
@@ -57,7 +63,7 @@ class Request {
         return new Map(this._headers);
     }
 
-    public get extra(): Map<string, string> {
+    public get extra(): Map<string, any> {
         return this._extra;
     }
 

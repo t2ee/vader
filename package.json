@@ -34,7 +34,8 @@
     "gitbook-cli": "^2.3.0",
     "istanbul": "^0.4.5",
     "mocha": "^3.0.2",
-    "supertest": "^1.2.0"
+    "supertest": "^1.2.0",
+    "tslint": "^4.5.1"
   },
   "engines": {
     "node": ">=6.0.0"

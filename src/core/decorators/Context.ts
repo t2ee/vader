@@ -1,13 +1,14 @@
 import {
-    injections,
+    AutoWired,
 } from '@t2ee/core';
 
 
-function Context(target: Object, key: string, index?: number) {
-    const meta = new Map<string, any>();
+function Context(target: any, key: string, index?: number): any {
+    const meta: Map<string, any> = new Map<string, any>();
     meta.set('by-vader', true);
     meta.set('type', 'context');
-    return injections.AutoWired({
+
+    return AutoWired({
         meta,
     })(target, key, index);
 }

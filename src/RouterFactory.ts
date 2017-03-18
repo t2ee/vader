@@ -1,15 +1,16 @@
 import Router from './Router';
 import {
-    injections,
+    Container,
 } from '@t2ee/core';
 import RouterConfiguration from './RouterConfiguration';
 
 class RouterFactory {
-    static createRouter(config?: RouterConfiguration): Router {
-        const router = injections.Container.get(Router, injections.Container.DefaultProvider);
+    public static createRouter(config?: RouterConfiguration): Router {
+        const router: Router = Container.get(Router, Container.DefaultProvider);
         if (config) {
             router['routerConfig'] = config;
         }
+
         return router;
     }
 }

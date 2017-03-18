@@ -3,16 +3,16 @@ import {
 } from 'sl4js';
 import {
     Configurable,
-    ConfigField, 
+    ConfigField,
 } from '@t2ee/configurable';
 
 @Configurable('router')
 class RouterConfiguration {
     @ConfigField
-    log: boolean;
+    public log: boolean;
 
     @ConfigField
-    logLevel: LogLevel;
+    public logLevel: LogLevel;
 }
 
 export default RouterConfiguration;

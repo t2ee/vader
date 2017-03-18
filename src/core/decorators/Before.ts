@@ -1,14 +1,13 @@
 import {
-    utils,
+    Metadata,
 } from '@t2ee/core';
-const { Metadata } = utils;
-import HttpMethod from '../../enums/HttpMethod';
+
 import BeforeMiddleware from '../BeforeMiddleware';
 
-function Before(key: string): (target: any, key?: string) => void;
-function Before(method: BeforeMiddleware):  (target: any, key?: string) => void;
-function Before(keyOrMethod: string | BeforeMiddleware) {
-    return (target: any, key?: string) => {
+function Before(key: string): (target: any, key?: string) => any;
+function Before(method: BeforeMiddleware): (target: any, key?: string) => any;
+function Before(keyOrMethod: string | BeforeMiddleware): (target: any, key?: string) => any {
+    return (target: any, key?: string): any => {
         let method: BeforeMiddleware = null;
         if (keyOrMethod instanceof String) {
             method = target.prototype[keyOrMethod];
@@ -16,17 +15,18 @@ function Before(keyOrMethod: string | BeforeMiddleware) {
             method = keyOrMethod;
         }
         if (key) { // is a method;
-            const afters = Metadata.get('vader:route:before', target) || {};
-            afters[key] = afters[key] || [];
-            afters[key].push(method);
-            Metadata.set('vader:route:before', afters, target);
+            const befores: {[key: string]: BeforeMiddleware[]} = Metadata.get('vader:route:before', target) || {};
+            befores[key] = befores[key] || [];
+            befores[key].push(method);
+            Metadata.set('vader:route:before', befores, target);
         } else { // is on class
-            console.log('here here')
-            const afters = Metadata.get('vader:controller:before', target) || [];
-            afters.push(method);
-            Metadata.set('vader:controller:before', afters, target);
+            const befores: BeforeMiddleware[] = Metadata.get('vader:controller:before', target) || [];
+            befores.push(method);
+            Metadata.set('vader:controller:before', befores, target);
         }
-    }
+
+        return target;
+    };
 }
 
 export default Before;
