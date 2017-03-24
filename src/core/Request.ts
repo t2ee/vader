@@ -25,6 +25,7 @@ class Request {
         }
         this._version = context.request.protocol;
         this._method = HttpMethod[context.method.toUpperCase() as any] as any;
+        this._context = context;
     }
 
     public get url(): string {
@@ -45,6 +46,10 @@ class Request {
 
     public get body(): any {
         return this._body;
+    }
+
+    public set body(body: any) {
+        this._body = body;
     }
 
     public get version(): string {
