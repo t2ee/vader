@@ -13,6 +13,7 @@ import {
     LogManager,
 } from 'sl4js';
 import RouterConfiguration from './RouterConfiguration';
+import CustomHandler from './core/CustomHandler';
 
 import AfterMiddleware from './core/AfterMiddleware';
 import BeforeMiddleware from './core/BeforeMiddleware';
@@ -56,6 +57,7 @@ class Router {
     private befores: BeforeMiddleware[] = [];
     private contextProviders: Map<ClassConstructor<any>, (req: Request) => any> =
         new Map<ClassConstructor<any>, (req: Request) => any>();
+    private _customHandler: ClassConstructor<CustomHandler>;
 
     @AutoWired
     private routerConfig: RouterConfiguration;
@@ -114,41 +116,53 @@ class Router {
                 const afters: AfterMiddleware[] = this.afters.concat(controller.afters).concat(route.afters);
                 const befores: BeforeMiddleware[] = this.befores.concat(controller.befores).concat(route.befores);
 
+
+                const contextProvider: Provider = {
+                    get: (config: AutoWiredMeta): any => {
+                        const klass: ClassConstructor<any> = config.klass;
+                        if (klass === Request) {
+                            return request;
+                        } else {
+                            if (this.contextProviders.has(klass)) {
+                                return this.contextProviders.get(klass)(request);
+                            }
+                        }
+
+                        return null;
+                    },
+                };
+
+                const provider: Provider = new RouteProvider(request, contextProvider);
+                let customHandler: CustomHandler;
+                if (this._customHandler) {
+                    customHandler = Container.get<CustomHandler>(this._customHandler, provider);
+                }
+
                 try {
                     for (const before of befores) {
                         request = await before(request);
                     }
 
-                    const contextProvider: Provider = {
-                        get: (config: AutoWiredMeta): any => {
-                            const klass: ClassConstructor<any> = config.klass;
-                            if (klass === Request) {
-                                return request;
-                            } else {
-                                if (this.contextProviders.has(klass)) {
-                                    return this.contextProviders.get(klass)(request);
-                                }
-                            }
-
-                            return null;
-                        },
-                    };
-
-                    const provider: Provider = new RouteProvider(request, contextProvider);
                     const controllerInstance: any =
                         Container.get<any>(controller.klass, provider);
                     response = await controllerInstance[route.key]();
+                    response = response || new Response();
                     response.extra = request.extra;
 
                     for (const after of afters) {
                         response = await after(response);
                     }
                 } catch (e) {
-                    LogManager.getInstance().getLogger().error(e.stack);
-                    response = new Response();
-                    // tslint:disable-next-line no-magic-numbers
-                    response.status = 500;
-                    response.body = 'Internal Server Error';
+                    if (customHandler) {
+                        //response = this._exceptionCaughtHandler(e);
+                        response = customHandler.exceptionCaught(e);
+                    } else {
+                        LogManager.getInstance().getLogger().error(e.stack);
+                        response = new Response();
+                        // tslint:disable-next-line no-magic-numbers
+                        response.status = 500;
+                        response.body = 'Internal Server Error';
+                    }
                 }
             }
 
@@ -156,7 +170,7 @@ class Router {
                 const method: string = context.method.toLocaleUpperCase();
                 const status: number = response.status;
                 const ms: number = Date.now() - routeStartAt;
-                LogManager.getInstance().getLogger().debug(`[${method} ${url}] ${status} ${ms}ms`);
+                LogManager.getInstance().getLogger().trace(`[${method} ${url}] ${status} ${ms}ms`);
             }
             context.status = response.status;
             context.body = response.body;
@@ -234,6 +248,10 @@ class Router {
 
     public provideContext<T>(klass: ClassConstructor<T>, func: (req: Request) => T): void {
         this.contextProviders.set(klass, func);
+    }
+
+    public set customHandler(handler: ClassConstructor<CustomHandler>) {
+        this._customHandler = handler;
     }
 }
 

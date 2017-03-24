@@ -1,3 +1,6 @@
+// tslint:disable-next-line
+import 'source-map-support/register';
+
 import RouteProvider from './RouteProvider';
 import Router from './Router';
 import RouterConfiguration from './RouterConfiguration';
@@ -26,6 +29,9 @@ import PathParams from './decorators/PathParams';
 import Query from './decorators/Query';
 import QueryParam from './decorators/QueryParam';
 import HttpMethod from './enums/HttpMethod';
+import CustomHandler from './core/CustomHandler';
+import Consumes from './decorators/Consumes';
+import Produces from './decorators/Produces';
 
 export {
     RouteProvider,
@@ -56,4 +62,7 @@ export {
     Query,
     QueryParam,
     HttpMethod,
+    CustomHandler,
+    Consumes,
+    Produces,
 };
