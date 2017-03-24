@@ -152,6 +152,7 @@ class Router {
                     for (const after of afters) {
                         response = await after(response);
                     }
+
                 } catch (e) {
                     if (customHandler) {
                         //response = this._exceptionCaughtHandler(e);
@@ -175,7 +176,7 @@ class Router {
             context.status = response.status;
             context.body = response.body;
             for (const [key, value] of response.headers.entries()) {
-                context.headers[key] = value;
+                context.set(key, value);
             }
             await next();
         };
