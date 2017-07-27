@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class ResponseBuilder {
     constructor(status, headers, body) {
         this._status = 200;
@@ -51,6 +52,5 @@ class Response extends ResponseBuilder {
         koaContext.status = this._status;
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Response;
 //# sourceMappingURL=Response.js.map

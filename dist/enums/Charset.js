@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Charset;
 (function (Charset) {
     Charset[Charset["UTF8"] = 0] = "UTF8";
@@ -12,6 +13,5 @@ var Charset;
     }
     Charset.toString = toString;
 })(Charset || (Charset = {}));
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Charset;
 //# sourceMappingURL=Charset.js.map

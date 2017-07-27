@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const Response_1 = require("./Response");
 const stream_1 = require("stream");
 class StreamResponseBuilder extends Response_1.ResponseBuilder {
@@ -26,6 +27,7 @@ class StreamResponseBuilder extends Response_1.ResponseBuilder {
     build() {
         if (!this._stream) {
             this._stream = new stream_1.Readable();
+            //this._stream._read = () => {};
         }
         return new StreamResponse()
             .setHeaders(this._headers)
@@ -66,6 +68,5 @@ class StreamResponse extends Response_1.default {
         koaContext.body = this._stream;
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = StreamResponse;
 //# sourceMappingURL=StreamResponse.js.map

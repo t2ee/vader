@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const RouteProperty_1 = require("../core/RouteProperty");
 const createArray_1 = require("../utils/createArray");
 class ControllerProperty {
@@ -9,6 +10,5 @@ class ControllerProperty {
         this.PATH = '';
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = ControllerProperty;
 //# sourceMappingURL=ControllerProperty.js.map

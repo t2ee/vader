@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const ControllerProperty_1 = require("../core/ControllerProperty");
 const Metadata = require("../utils/Metadata");
 function decorate(func) {
@@ -9,6 +10,5 @@ function decorate(func) {
         return ret;
     };
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = decorate;
 //# sourceMappingURL=decorate.js.map

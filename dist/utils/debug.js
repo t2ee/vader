@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const Debugger = require("debug");
 const cache = {};
 function default_1(name) {
@@ -7,6 +8,5 @@ function default_1(name) {
     }
     return cache[name];
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = default_1;
 //# sourceMappingURL=debug.js.map

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 function get(key, target) {
     return Reflect.getMetadata(key, target.prototype || target);
 }

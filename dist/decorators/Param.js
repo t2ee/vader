@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const ParamType_1 = require("../enums/ParamType");
 const debug_1 = require("../utils/debug");
 const ControllerProperty_1 = require("../core/ControllerProperty");
@@ -30,6 +31,5 @@ function Param(paramType, paramKey) {
         Metadata.set('vader:controller:property', property, target);
     };
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Param;
 //# sourceMappingURL=Param.js.map

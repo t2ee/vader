@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Status;
 (function (Status) {
     Status[Status["OK"] = 200] = "OK";
@@ -117,6 +118,5 @@ var Status;
     }
     Status.toString = toString;
 })(Status || (Status = {}));
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Status;
 //# sourceMappingURL=Status.js.map

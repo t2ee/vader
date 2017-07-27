@@ -3,6 +3,10 @@
 [![build status][travis-image]][travis-url]
 [![Test coverage][coveralls-image]][coveralls-url]
 
+## Announcement
+
+`v1.0` is in alpha state, feel free to give it a try: [branch v1.0](https://github.com/t2ee/vader/tree/v1.0)
+
 ## Installation
 
 ```

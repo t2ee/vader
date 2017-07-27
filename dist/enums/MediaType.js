@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var MediaType;
 (function (MediaType) {
     MediaType[MediaType["TEXT"] = 0] = "TEXT";
@@ -21,6 +22,5 @@ var MediaType;
     }
     MediaType.toString = toString;
 })(MediaType || (MediaType = {}));
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = MediaType;
 //# sourceMappingURL=MediaType.js.map

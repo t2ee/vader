@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var ParamType;
 (function (ParamType) {
     ParamType[ParamType["QueryParam"] = 0] = "QueryParam";
@@ -27,6 +28,5 @@ var ParamType;
     }
     ParamType.toString = toString;
 })(ParamType || (ParamType = {}));
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = ParamType;
 //# sourceMappingURL=ParamType.js.map

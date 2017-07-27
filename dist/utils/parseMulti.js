@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const formy = require('formidable');
 function parseMulti(koaContext, opts = {}) {
     return new Promise((resolve, reject) => {
@@ -40,6 +41,5 @@ function parseMulti(koaContext, opts = {}) {
         form.parse(koaContext.req);
     });
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = parseMulti;
 //# sourceMappingURL=parseMulti.js.map

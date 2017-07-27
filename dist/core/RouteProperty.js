@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class RouteProperty {
     constructor() {
         this.PATHS = [];
@@ -6,6 +7,5 @@ class RouteProperty {
         this.PARAMS = [];
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = RouteProperty;
 //# sourceMappingURL=RouteProperty.js.map

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const MediaType_1 = require("../enums/MediaType");
 const debug_1 = require("../utils/debug");
 const ControllerProperty_1 = require("../core/ControllerProperty");
@@ -12,6 +13,5 @@ function Consume(type) {
         Metadata.set('vader:controller:property', property, target);
     };
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Consume;
 //# sourceMappingURL=Consume.js.map

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var HttpMethod;
 (function (HttpMethod) {
     HttpMethod[HttpMethod["GET"] = 0] = "GET";
@@ -27,6 +28,5 @@ var HttpMethod;
     }
     HttpMethod.toString = toString;
 })(HttpMethod || (HttpMethod = {}));
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = HttpMethod;
 //# sourceMappingURL=HttpMethod.js.map

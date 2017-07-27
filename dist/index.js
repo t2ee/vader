@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var AbstractMiddleware_1 = require("./core/AbstractMiddleware");
 exports.AbstractMiddleware = AbstractMiddleware_1.default;
 var ControllerProperty_1 = require("./core/ControllerProperty");

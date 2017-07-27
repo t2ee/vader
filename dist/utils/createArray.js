@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 function createArray(type) {
     const result = new Proxy(new Array(), {
         get: (target, name) => {
@@ -10,6 +11,5 @@ function createArray(type) {
     });
     return result;
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = createArray;
 //# sourceMappingURL=createArray.js.map

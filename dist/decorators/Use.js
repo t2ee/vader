@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const debug_1 = require("../utils/debug");
 const ControllerProperty_1 = require("../core/ControllerProperty");
 const debug = debug_1.default('vader:decorator');
@@ -17,6 +18,5 @@ function Use(func) {
         Metadata.set('vader:controller:property', property, target);
     };
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Use;
 //# sourceMappingURL=Use.js.map
