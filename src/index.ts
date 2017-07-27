@@ -1,20 +1,18 @@
 // tslint:disable-next-line
 import 'source-map-support/register';
 
-import RouteProvider from './RouteProvider';
 import Router from './Router';
 import RouterConfiguration from './RouterConfiguration';
-import RouterFactory from './RouterFactory';
 import AfterMiddleware from './core/AfterMiddleware';
 import BeforeMiddleware from './core/BeforeMiddleware';
-import ParamHook from './core/ParamHook';
+import ContextHook from './core/ContextHook';
 import Request from './core/Request';
 import Response from './core/Response';
 import After from './core/decorators/After';
 import Before from './core/decorators/Before';
+import Contexted from './core/decorators/Contexted';
 import Context from './core/decorators/Context';
 import Method from './core/decorators/Method';
-import Param from './core/decorators/Param';
 import Path from './core/decorators/Path';
 import Body from './decorators/Body';
 import DELETE from './decorators/DELETE';
@@ -32,22 +30,22 @@ import HttpMethod from './enums/HttpMethod';
 import CustomHandler from './core/CustomHandler';
 import Consumes from './decorators/Consumes';
 import Produces from './decorators/Produces';
+import ErrorHandler from './handlers/ErrorHandler';
+import NotFoundHandler from './handlers/NotFoundHandler';
 
 export {
-    RouteProvider,
     Router,
     RouterConfiguration,
-    RouterFactory,
     AfterMiddleware,
     BeforeMiddleware,
-    ParamHook,
+    ContextHook,
     Request,
     Response,
     After,
     Before,
+    Contexted,
     Context,
     Method,
-    Param,
     Path,
     Body,
     DELETE,
@@ -65,4 +63,13 @@ export {
     CustomHandler,
     Consumes,
     Produces,
+    ErrorHandler,
+    NotFoundHandler,
 };
+
+import {
+    Container,
+} from '@t2ee/core';
+import contextProvider from './core/ContextProvider';
+
+Container.inject(Symbol.for('t2ee:vader:context'), contextProvider);

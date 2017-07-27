@@ -1,0 +1,4 @@
+server:
+    logging:
+        enabled: true
+        level: LogLevel.DEBUG

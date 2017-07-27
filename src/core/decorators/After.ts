@@ -14,17 +14,17 @@ function After(keyOrMethod: string | AfterMiddleware): (target: any, key?: strin
             method = keyOrMethod;
         }
         if (key) { // is a method;
-            const afters: {[key: string]: AfterMiddleware[]} = Metadata.get('vader:route:after', target) || {};
+            const afters: {[key: string]: AfterMiddleware[]} = Metadata.get('t2ee:vader:route:after', target) || {};
             afters[key] = afters[key] || [];
             afters[key].push(method);
-            Metadata.set('vader:route:after', afters, target);
+            Metadata.set('t2ee:vader:route:after', afters, target);
         } else { // is on class
-            const afters: AfterMiddleware[] = Metadata.get('vader:controller:after', target) || [];
+            const afters: AfterMiddleware[] = Metadata.get('t2ee:vader:controller:after', target) || [];
             afters.push(method);
-            Metadata.set('vader:controller:after', afters, target);
+            Metadata.set('t2ee:vader:controller:after', afters, target);
         }
 
-        return target;
+        //return target;
     };
 }
 

@@ -15,17 +15,17 @@ function Before(keyOrMethod: string | BeforeMiddleware): (target: any, key?: str
             method = keyOrMethod;
         }
         if (key) { // is a method;
-            const befores: {[key: string]: BeforeMiddleware[]} = Metadata.get('vader:route:before', target) || {};
+            const befores: {[key: string]: BeforeMiddleware[]} = Metadata.get('t2ee:vader:route:before', target) || {};
             befores[key] = befores[key] || [];
             befores[key].push(method);
-            Metadata.set('vader:route:before', befores, target);
+            Metadata.set('t2ee:vader:route:before', befores, target);
         } else { // is on class
-            const befores: BeforeMiddleware[] = Metadata.get('vader:controller:before', target) || [];
+            const befores: BeforeMiddleware[] = Metadata.get('t2ee:vader:controller:before', target) || [];
             befores.push(method);
-            Metadata.set('vader:controller:before', befores, target);
+            Metadata.set('t2ee:vader:controller:before', befores, target);
         }
 
-        return target;
+        //return target;
     };
 }
 

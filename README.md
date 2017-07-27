@@ -1,7 +1,6 @@
-#Introduction
+# Introducation
+> This library is to be used with [@t2ee/core](https://github.com/t2ee/core)
 
-> 1.0.0 version
+# Example
 
-> Work In Progress
 
-> Expect to be launched in May.

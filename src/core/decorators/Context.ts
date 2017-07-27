@@ -1,16 +1,7 @@
-import {
-    AutoWired,
-} from '@t2ee/core';
-
+import Contexted from './Contexted';
 
 function Context(target: any, key: string, index?: number): any {
-    const meta: Map<string, any> = new Map<string, any>();
-    meta.set('by-vader', true);
-    meta.set('type', 'context');
-
-    return AutoWired({
-        meta,
-    })(target, key, index);
+    return Contexted(null)(target, key, index);
 }
 
 export default Context;

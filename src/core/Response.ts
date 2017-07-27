@@ -10,6 +10,7 @@ class Response {
     }
 
     public set body(body: any) {
+        this._status = 200;
         this._body = body;
     }
 

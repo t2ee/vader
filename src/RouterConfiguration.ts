@@ -1,18 +1,19 @@
 import {
     LogLevel,
-} from 'sl4js';
+} from '@t2ee/sl4js';
 import {
-    Configurable,
-    ConfigField,
-} from '@t2ee/configurable';
+    Component,
+    Value,
+} from '@t2ee/core';
 
-@Configurable('router')
+@Component
 class RouterConfiguration {
-    @ConfigField
-    public log: boolean;
 
-    @ConfigField
+    @Value('server.logging.level', 'application')
     public logLevel: LogLevel;
+
+    @Value('server.logging.enabled', 'application')
+    public logEnabled: boolean;
 }
 
 export default RouterConfiguration;
