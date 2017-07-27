@@ -6,7 +6,8 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.json",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+	"test": "echo 'no test'"
   },
   "dependencies": {
     "@t2ee/core": "^0.1.2",
