@@ -1,6 +1,6 @@
 {
   "name": "@t2ee/vader",
-  "version": "1.0.0-alpha-7",
+  "version": "1.0.0-alpha-9",
   "description": "t2ee router component",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -10,7 +10,7 @@
     "test": "echo 'no test'"
   },
   "dependencies": {
-    "@t2ee/core": "^0.1.3",
+    "@t2ee/core": "^0.1.7",
     "@t2ee/sl4js": "^0.1.4",
     "@types/chai": "^3.4.29",
     "@types/co-body": "0.0.1",
@@ -20,7 +20,6 @@
     "@types/mocha": "^2.2.28",
     "@types/node": "^7.0.8",
     "@types/supertest": "^2.0.2",
-    "app-module-path": "^1.1.0",
     "co-body": "^4.2.0",
     "debug": "^2.2.0",
     "formidable": "^1.0.17",

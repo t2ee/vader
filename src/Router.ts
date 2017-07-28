@@ -149,9 +149,14 @@ class Router {
                     }
 
                     const controllerInstance: any =
-                        Container.get<any>(controller.klass, {
-                            volatile: volatileMap,
-                            context: this.contextedVariables,
+                        Container.get<any>({
+                            type: controller.klass,
+                            declaredType: null,
+                        },
+                        null,
+                        {
+                                volatile: volatileMap,
+                                context: this.contextedVariables,
                         });
                     volatileMap.response = await controllerInstance[route.key]();
 
