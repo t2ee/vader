@@ -21,7 +21,7 @@
 
 # IMPORTANT !!
 
-`@t2ee/vader` has now moved towards `1.x` versions, with branch new mechanisms (though, 99% like apis like `0.x` versions). For legacy `0.x` versions, please [0.x branch](see https://github.com/t2ee/vader/tree/0.x).
+`@t2ee/vader` has now moved towards `1.x` versions, with branch new mechanisms (though, 99% like apis like `0.x` versions). For legacy `0.x` versions, please (0.x branch)[see https://github.com/t2ee/vader/tree/0.x].
 
 # Introducation
 
