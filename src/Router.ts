@@ -63,6 +63,7 @@ class Router {
 
     public constructor() {
         this.provideContext(Request, (req: Request) => req);
+        this.provideContext(Request, (req: Request) => req);
     }
 
     @AutoWired('ErrorHandler')
@@ -127,7 +128,8 @@ class Router {
                 response,
             };
 
-            let afterAlls: AfterAllMiddleware[] = [];
+            let afterAlls: (AfterAllMiddleware | string)[] = [];
+            let controllerInstance: any;
 
             if (match) {
                 const {
@@ -135,20 +137,17 @@ class Router {
                     route,
                     params,
                 }: MatchResult = match;
-                const afters: AfterMiddleware[] =
+                const afters: (AfterMiddleware | string)[] =
                     this.afters.concat(controller.afters).concat(route.afters);
-                const befores: BeforeMiddleware[] =
+                const befores: (BeforeMiddleware | string)[] =
                     this.befores.concat(controller.befores).concat(route.befores);
                 afterAlls = this.afterAlls.concat(controller.afterAlls).concat(route.afterAlls);
 
                 volatileMap.request = new Request(context, params);
 
                 try {
-                    for (const before of befores) {
-                        volatileMap.request = await before(volatileMap.request);
-                    }
 
-                    const controllerInstance: any =
+                    controllerInstance =
                         Container.get<any>({
                             type: controller.klass,
                             declaredType: null,
@@ -158,6 +157,15 @@ class Router {
                                 volatile: volatileMap,
                                 context: this.contextedVariables,
                         });
+
+                    for (const before of befores) {
+                        if (typeof before === 'string') {
+                            volatileMap.request = await controllerInstance[before](volatileMap.request);
+                        } else {
+                            volatileMap.request = await before(volatileMap.request);
+                        }
+                    }
+
                     volatileMap.response = await controllerInstance[route.key]();
 
                     if (!volatileMap.response && this.notFoundHandler) {
@@ -168,7 +176,11 @@ class Router {
                     volatileMap.response.extra = volatileMap.request.extra;
 
                     for (const after of afters) {
-                        volatileMap.response = await after(volatileMap.response);
+                        if (typeof after === 'string') {
+                            volatileMap.response = await controllerInstance[after](volatileMap.response);
+                        } else {
+                            volatileMap.response = await after(volatileMap.response);
+                        }
                     }
 
                 } catch (e) {
@@ -178,8 +190,8 @@ class Router {
                         LogManager.getLogger().error(e.stack);
                         volatileMap.response = new Response();
                         // tslint:disable-next-line no-magic-numbers
-                        volatileMap.response.status = 500;
                         volatileMap.response.body = 'Internal Server Error';
+                        volatileMap.response.status = 500;
                     }
                 }
             } else if (this.notFoundHandler) {
@@ -201,7 +213,11 @@ class Router {
             await next();
             (async () => {
                 for (const afterAll of afterAlls) {
-                    await afterAll(volatileMap.request, volatileMap.response);
+                    if (typeof afterAll === 'string') {
+                        await controllerInstance[afterAll](volatileMap.request, volatileMap.response);
+                    } else {
+                        await afterAll(volatileMap.request, volatileMap.response);
+                    }
                 }
             })()
             .catch((e: Error) => {
@@ -252,6 +268,8 @@ class Router {
         const klass: ClassConstructor<any>  = klassOrBefores;
         const befores: BeforeMiddleware[] = <BeforeMiddleware[]> beforeOrAfter || [];
         const afters: AfterMiddleware[] = <AfterMiddleware[]> aftersOrAfterAlls || [];
+
+        Component(klass);
 
         const controllerPath: string = Metadata.get('t2ee:vader:controller:path', klass) || '';
         const routePaths: O<string> = Metadata.get('t2ee:vader:route:path', klass.prototype) || {};

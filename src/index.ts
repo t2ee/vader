@@ -4,11 +4,13 @@ import 'source-map-support/register';
 import Router from './Router';
 import RouterConfiguration from './RouterConfiguration';
 import AfterMiddleware from './core/AfterMiddleware';
+import AfterAllMiddleware from './core/AfterAllMiddleware';
 import BeforeMiddleware from './core/BeforeMiddleware';
 import ContextHook from './core/ContextHook';
 import Request from './core/Request';
 import Response from './core/Response';
 import After from './core/decorators/After';
+import AfterAll from './core/decorators/AfterAll';
 import Before from './core/decorators/Before';
 import Contexted from './core/decorators/Contexted';
 import Context from './core/decorators/Context';
@@ -27,7 +29,6 @@ import PathParams from './decorators/PathParams';
 import Query from './decorators/Query';
 import QueryParam from './decorators/QueryParam';
 import HttpMethod from './enums/HttpMethod';
-import CustomHandler from './core/CustomHandler';
 import Consumes from './decorators/Consumes';
 import Produces from './decorators/Produces';
 import ErrorHandler from './handlers/ErrorHandler';
@@ -37,12 +38,14 @@ export {
     Router,
     RouterConfiguration,
     AfterMiddleware,
+    AfterAllMiddleware,
     BeforeMiddleware,
     ContextHook,
     Request,
     Response,
     After,
     Before,
+    AfterAll,
     Contexted,
     Context,
     Method,
@@ -60,7 +63,6 @@ export {
     Query,
     QueryParam,
     HttpMethod,
-    CustomHandler,
     Consumes,
     Produces,
     ErrorHandler,

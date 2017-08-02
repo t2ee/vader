@@ -7,6 +7,7 @@ import ContextHook from './ContextHook';
 
 export class ContextProvider implements Provider {
     public resolve<T>(value: T, meta: AutoWireMeta, args: any[]): any {
+        try {
         const {
             volatile,
             context,
@@ -20,6 +21,10 @@ export class ContextProvider implements Provider {
         const hook: ContextHook = meta.data.get('hook');
 
         return hook(request, key);
+        }catch(e) {
+            console.log(meta, args);
+            throw e;
+        }
     }
 
 }
