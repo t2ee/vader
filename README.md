@@ -1,11 +1,11 @@
 <p align="center">
-    <a href="http://t2ee.org">
-        <img width="200" src="http://t2ee.org/img/logos/t2ee.png">
+    <a href="//t2ee.org">
+        <img width="200" src="//t2ee.org/img/logos/t2ee.png">
     </a>
 </p>
 <p align="center">
-    <a href="http://vader.t2ee.org">
-        <img width="200" src="http://t2ee.org/img/logos/vader.png">
+    <a href="//vader.t2ee.org">
+        <img width="200" src="//t2ee.org/img/logos/vader.png">
     </a>
 </p>
 
@@ -27,7 +27,7 @@
 
 @t2ee/vader is a routing component (with JAX-RS like grammars). It is to be used with [koa@2](https://github.com/koajs/koa).
 
-For detailed introduction and examples, please visit [vader.t2ee.org](http://vader.t2ee.org)
+For detailed introduction and examples, please visit [vader.t2ee.org](//vader.t2ee.org)
 
 # Installation
 

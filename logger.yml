@@ -1,7 +1,7 @@
-default: ConsoleDebug
+default: console 
 level: LogLevel.DEBUG
 appenders:
-  - name: ConsoleDebug
+  - name: console
     appender: console
     pattern: '%d{YYYY-MM-DD HH:mm:ss.SSS} %-7c{[%l]} %10n %5p - %2w  %M'
     level: LogLevel.DEBUG
