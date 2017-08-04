@@ -1,11 +1,11 @@
 <p align="center">
-    <a href="//t2ee.org">
-        <img width="200" src="//t2ee.org/img/logos/t2ee.png">
+    <a href="https://t2ee.org">
+        <img width="200" src="https://t2ee.org/img/logos/t2ee.png">
     </a>
 </p>
 <p align="center">
-    <a href="//vader.t2ee.org">
-        <img width="200" src="//t2ee.org/img/logos/vader.png">
+    <a href="https://vader.t2ee.org">
+        <img width="200" src="https://t2ee.org/img/logos/vader.png">
     </a>
 </p>
 
@@ -21,7 +21,7 @@
 
 # IMPORTANT !!
 
-`@t2ee/vader` has now moved towards `1.x` versions, with branch new mechanisms (though, 99% like apis as `0.x` versions). For legacy `0.x` versions, please see [0.x branch](https://github.com/t2ee/vader/tree/0.x).
+`@t2ee/vader` has now moved towards `1.x` versions, with brand new mechanisms (though, 99% like apis as `0.x` versions). For legacy `0.x` versions, please see [0.x branch](https://github.com/t2ee/vader/tree/0.x).
 
 # Introducation
 
