@@ -112,6 +112,16 @@ class Router {
         return null;
     }
 
+    private shouldErrorHandlerHandleError(error: Error): boolean {
+        if (!this.errorHandler) return false;
+        if (!this.errorHandler.supportedErrors) return true;
+        const errors = this.errorHandler.supportedErrors();
+        if (errors.filter(e => error instanceof e).length) {
+            return true;
+        }
+        return false;
+    }
+
     public routes(): (context: Koa.Context, next: () => Promise<any>) => any {
         return async (context: Koa.Context, next: () => Promise<any>): Promise<any> => {
             const url: string = context.path;
@@ -184,7 +194,7 @@ class Router {
                     }
 
                 } catch (e) {
-                    if (this.errorHandler) {
+                    if (this.shouldErrorHandlerHandleError(e)) {
                         volatileMap.response = await this.errorHandler.handle(volatileMap.request, e);
                     } else {
                         LogManager.getLogger().error(e.stack);
@@ -221,7 +231,7 @@ class Router {
                 }
             })()
             .catch((e: Error) => {
-                if (this.errorHandler) {
+                if (this.shouldErrorHandlerHandleError(e)) {
                     this.errorHandler.handle(volatileMap.request, e).catch((e: Error) => {
                         LogManager.getLogger().error(e.stack);
                     });

@@ -25,15 +25,40 @@ import {
     Query,
     QueryParam,
     Context,
+    ErrorHandler,
 } from './';
 import {
     ConfigurationStore,
+    Configuration,
+    Bean,
     Component,
 } from '@t2ee/core';
 import * as path from 'path';
 
 ConfigurationStore.loadFile(path.resolve(__dirname, '../logger'));
-const router = new Router();
+const router = Router.newInstance();
+
+class MyError extends Error {}
+
+@Configuration
+class Config {
+    @Bean('ErrorHandler')
+    errorHandler(): ErrorHandler {
+        return {
+            async handle(req: Request, error: Error): Promise<Response> {
+                throw error;
+            },
+            supportedErrors() {
+                return [MyError];
+            },
+        }
+    }
+}
+
+test('ErrorHandler.supportedErrors', t => {
+    t.false(router['shouldErrorHandlerHandleError'](new Error()));
+    t.true(router['shouldErrorHandlerHandleError'](new MyError()));
+})
 
 @Path('/basic')
 class BasicTest {
