@@ -11,6 +11,9 @@
 
 
 <p align="center">
+    <a href="https://www.npmjs.com/package/@t2ee/vader">
+        <img src="https://badge.fury.io/js/%40t2ee%2Fvader.svg">
+    </a>
     <a href="https://travis-ci.org/t2ee/vader">
         <img src="https://img.shields.io/travis/t2ee/vader/master.svg?style=flat-square">
     </a>
