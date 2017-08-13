@@ -34,6 +34,16 @@
 ## Basic Usage
 
 ```typescript
+import 'reflect-metadata';
+import * as Koa from 'koa';
+import {
+    Path,
+    Router,
+    QueryParam,
+    Response,
+    GET,
+} from '@t2ee/vader';
+
 const router = Router.newInstance();
 
 @Path('/')

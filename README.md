@@ -42,6 +42,15 @@ For detailed introduction and examples, please visit [vader.t2ee.org](//vader.t2
 
 ```typescript
 import 'reflect-metadata';
+import * as Koa from 'koa';
+import {
+    Path,
+    Router,
+    QueryParam,
+    Response,
+    GET,
+} from '@t2ee/vader';
+
 const router = Router.newInstance();
 
 @Path('/')
