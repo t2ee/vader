@@ -41,6 +41,7 @@ For detailed introduction and examples, please visit [vader.t2ee.org](//vader.t2
 # Example
 
 ```typescript
+import 'reflect-metadata';
 const router = Router.newInstance();
 
 @Path('/')
