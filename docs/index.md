@@ -46,7 +46,7 @@ import {
 
 const router = Router.newInstance();
 
-@Path('/')
+@Path('')
 class Controller {
 
     @GET
