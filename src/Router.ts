@@ -266,7 +266,7 @@ class Router {
         beforeOrAfter?: AfterMiddleware[] | BeforeMiddleware[],
         aftersOrAfterAlls?: AfterMiddleware[] | AfterAllMiddleware[],
         afterAlls: AfterAllMiddleware[] = [],
-    ): void {
+    ): Router {
         if (Array.isArray(klassOrBefores)) {
             this.useMiddlewares(klassOrBefores, <AfterMiddleware[]> beforeOrAfter);
 
@@ -327,6 +327,8 @@ class Router {
         }
 
         this.controllers.push(controller);
+
+        return this;
     }
 
     public static newInstance(): Router {
@@ -335,8 +337,9 @@ class Router {
         return router;
     }
 
-    public provideContext<T>(klass: ClassConstructor<T>, func: (req: Request) => T): void {
+    public provideContext<T>(klass: ClassConstructor<T>, func: (req: Request) => T): Router{
         this.contextedVariables.set(klass, func);
+        return this;
     }
 
 }
