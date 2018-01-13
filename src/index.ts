@@ -1,77 +1,59 @@
-// tslint:disable-next-line
 import 'source-map-support/register';
 
-import Router from './Router';
-import RouterConfiguration from './RouterConfiguration';
-import AfterMiddleware from './core/AfterMiddleware';
-import AfterAllMiddleware from './core/AfterAllMiddleware';
-import BeforeMiddleware from './core/BeforeMiddleware';
-import ContextHook from './core/ContextHook';
-import Request from './core/Request';
-import Response from './core/Response';
-import After from './core/decorators/After';
-import AfterAll from './core/decorators/AfterAll';
-import Before from './core/decorators/Before';
-import Contexted from './core/decorators/Contexted';
-import Context from './core/decorators/Context';
-import Method from './core/decorators/Method';
-import Path from './core/decorators/Path';
-import Body from './decorators/Body';
-import DELETE from './decorators/DELETE';
-import GET from './decorators/GET';
-import HeaderParam from './decorators/HeaderParam';
-import Headers from './decorators/Headers';
-import PATCH from './decorators/PATCH';
-import POST from './decorators/POST';
-import PUT from './decorators/PUT';
-import PathParam from './decorators/PathParam';
-import PathParams from './decorators/PathParams';
-import Query from './decorators/Query';
-import QueryParam from './decorators/QueryParam';
-import HttpMethod from './enums/HttpMethod';
-import Consumes from './decorators/Consumes';
-import Produces from './decorators/Produces';
-import ErrorHandler from './handlers/ErrorHandler';
-import NotFoundHandler from './handlers/NotFoundHandler';
+import Router from './core/Router';
+import Middleware from './core/Middleware';
+
+import MediaType from './constants/MediaType';
+import HttpMethod from './constants/HttpMethod';
+
+import ContextDecorator from './context/ContextDecorator';
+import ContextProvider from './context/ContextProvider';
+import Request from './context/Request';
+import Response from './context/Response';
+import Query from './context/Query';
+import Body from './context/Body';
+import Param from './context/Param';
+import Header from './context/Header';
+import Variable from './context/Variable';
+
+import Controller from './meta/Controller';
+import Produce from './meta/Produce';
+import Consume from './meta/Consume';
+import Path from './meta/Path';
+import Method from './meta/Method'
+import GET from './meta/GET';
+import POST from './meta/POST';
+import PUT from './meta/PUT';
+import DELETE from './meta/DELETE';
+import OPTIONS from './meta/OPTIONS';
+import HEAD from './meta/HEAD';
 
 export {
     Router,
-    RouterConfiguration,
-    AfterMiddleware,
-    AfterAllMiddleware,
-    BeforeMiddleware,
-    ContextHook,
+    Middleware,
+
+    HttpMethod,
+    MediaType,
+
+    ContextDecorator,
+    ContextProvider,
     Request,
     Response,
-    After,
-    Before,
-    AfterAll,
-    Contexted,
-    Context,
-    Method,
-    Path,
+    Query,
     Body,
-    DELETE,
+    Param,
+    Header,
+    Variable,
+
+    Controller,
+    Produce,
+    Consume,
+    Path,
+    Method,
     GET,
-    HeaderParam,
-    Headers,
-    PATCH,
     POST,
     PUT,
-    PathParam,
-    PathParams,
-    Query,
-    QueryParam,
-    HttpMethod,
-    Consumes,
-    Produces,
-    ErrorHandler,
-    NotFoundHandler,
-};
-
-import {
-    Container,
-} from '@t2ee/core';
-import contextProvider from './core/ContextProvider';
-
-Container.inject(Symbol.for('t2ee:vader:context'), contextProvider);
+    DELETE,
+    OPTIONS,
+    HEAD,
+}

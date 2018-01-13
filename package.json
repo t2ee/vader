@@ -1,12 +1,12 @@
 {
   "name": "@t2ee/vader",
-  "version": "1.0.3",
+  "version": "2.0.0-alpha",
   "description": "t2ee router component",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -p src/tsconfig.json",
-    "prepublish": "npm run test && npm run build",
+    "prepublish": "npm run build",
     "build-test": "rm -rf test-dist/ && tsc -p src/tsconfig.test.json",
     "test": "npm run build-test && ava test-dist/**/*.test.js test-dist/**/**/*.test.js test-dist/*.test.js",
     "coverage": "npm run build-test && nyc ava -- test-dist/**/*.test.js test-dist/**/**/*.test.js test-dist/*.test.js"
@@ -14,21 +14,22 @@
   "dependencies": {
     "@types/co-body": "0.0.1",
     "@types/debug": "0.0.28",
-    "@types/koa": "^2.0.39",
+    "@types/koa": "^2.0.43",
     "@types/lodash": "^4.14.71",
     "@types/node": "^7.0.8",
     "co-body": "^4.2.0",
     "debug": "^2.2.0",
     "formidable": "^1.0.17",
+    "koa-bodyparser": "^4.2.0",
     "lodash": "^4.17.4",
     "path-to-regexp": "^1.5.3",
-    "source-map-support": "^0.4.2"
+    "source-map-support": "^0.4.2",
+    "typescript": "^2.6.2"
   },
   "peerDependencies": {
-    "@t2ee/core": "0.1.x",
-    "@t2ee/sl4js": "0.1.x",
+    "@t2ee/core": "1.x",
     "koa": "2.x",
-    "typescript": "2.4.x",
+    "typescript": "2.6.x",
     "reflect-metadata": "^0.1.10"
   },
   "devDependencies": {
