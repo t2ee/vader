@@ -27,7 +27,7 @@
     "typescript": "^2.6.2"
   },
   "peerDependencies": {
-    "@t2ee/core": "1.x",
+    "@t2ee/core": "nighty",
     "koa": "2.x",
     "typescript": "2.6.x",
     "reflect-metadata": "^0.1.10"
