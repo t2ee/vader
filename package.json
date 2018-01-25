@@ -1,6 +1,6 @@
 {
   "name": "@t2ee/vader",
-  "version": "2.0.0-alpha",
+  "version": "2.0.0-alpha2",
   "description": "t2ee router component",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
