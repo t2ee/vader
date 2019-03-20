@@ -26,7 +26,7 @@
 
 `@t2ee/vader` has now moved towards `1.x` versions, with brand new mechanisms (though, 99% like apis as `0.x` versions). For legacy `0.x` versions, please see [0.x branch](https://github.com/t2ee/vader/tree/0.x).
 
-# Introducation
+# Introduction
 
 @t2ee/vader is a routing component (with JAX-RS like grammars). It is to be used with [koa@2](https://github.com/koajs/koa).
 
